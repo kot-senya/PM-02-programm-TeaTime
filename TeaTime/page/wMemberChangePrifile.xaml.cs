@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using teaTime.page;
 
-namespace teaTime.page
+namespace teaTime
 {
     /// <summary>
     /// Логика взаимодействия для wMemberChangePrifile.xaml

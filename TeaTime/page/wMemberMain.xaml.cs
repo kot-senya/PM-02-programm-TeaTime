@@ -17,11 +17,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 //using System.Windows.Xps.Serialization;
 using System.Xml.Linq;
-using teaTime.page;
 using teaTime.class_es;
 using System.ComponentModel;
 
-namespace teaTime.page
+namespace teaTime
 {
     /// <summary>
     /// Логика взаимодействия для wMemberMain.xaml
@@ -272,7 +271,7 @@ namespace teaTime.page
         /// <summary>
         /// новый код !!!
         /// </summary>
-        BindingList<DataTimeEvent> dataTime = new BindingList<DataTimeEvent>();
+        List<DataTimeEvent> dataTime = new List<DataTimeEvent>();
         private void loadedData()
         {
             //цикл с загрузкой даты и ее описания

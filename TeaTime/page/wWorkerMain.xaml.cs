@@ -15,8 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using teaTime.class_es;
+using TeaTime;
 
-namespace teaTime.page
+
+namespace teaTime
 {
     /// <summary>
     /// Логика взаимодействия для wWorkerMain.xaml
@@ -271,19 +273,35 @@ namespace teaTime.page
         /// <summary>
         /// новый код !!!
         /// </summary>
-        BindingList<DataTimeEvent> dataTime = new BindingList<DataTimeEvent>();
+        List<DataTimeEvent> dataTime = new List<DataTimeEvent>();
         private void loadedData()
         {
             //цикл с загрузкой даты и ее описания
-            
-            
-            
-            
-            dataTime.Add(new DataTimeEvent { Data = "15.05.2023", Time = "15:00", Name = "Proba 1", Theme = "Proba 1", Description = "Proba 1" });
-            dataTime.Add(new DataTimeEvent { Data = "25.05.2023", Time = "15:00", Name = "Proba 2", Theme = "Proba 2", Description = "Proba 2" });
-            dataTime.Add(new DataTimeEvent { Data = "10.04.2023", Time = "15:00", Name = "Proba 3", Theme = "Proba 3", Description = "Proba 3" });
-            dataTime.Add(new DataTimeEvent { Data = "28.06.2023", Time = "15:00", Name = "Proba 4", Theme = "Proba 4", Description = "Proba 4" });
-            dataTime.Add(new DataTimeEvent { Data = "02.06.2023", Time = "15:00", Name = "Proba 5", Theme = "Proba 5", Description = "Proba 5" });
+            using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
+            {
+                dataTime = Converter(DB.Event.ToList());
+            }
+            //    dataTime.Add(new DataTimeEvent { Data = "15.05.2023", Time = "15:00", Name = "Proba 1", Theme = "Proba 1", Description = "Proba 1" });
+            //    dataTime.Add(new DataTimeEvent { Data = "25.05.2023", Time = "15:00", Name = "Proba 2", Theme = "Proba 2", Description = "Proba 2" });
+            //    dataTime.Add(new DataTimeEvent { Data = "10.04.2023", Time = "15:00", Name = "Proba 3", Theme = "Proba 3", Description = "Proba 3" });
+            //    dataTime.Add(new DataTimeEvent { Data = "28.06.2023", Time = "15:00", Name = "Proba 4", Theme = "Proba 4", Description = "Proba 4" });
+            //    dataTime.Add(new DataTimeEvent { Data = "02.06.2023", Time = "15:00", Name = "Proba 5", Theme = "Proba 5", Description = "Proba 5" });
+        }
+        public List<DataTimeEvent> Converter (List<Event> List)
+        {
+            List<DataTimeEvent> dataTimeEvents = new List<DataTimeEvent>();
+            for(int i = 0; i < List.Count; i++)
+            {
+                dataTimeEvents.Add(new DataTimeEvent
+                {
+                    Data = Convert.ToString(List[i].date).Split(' ')[0],
+                    Time = Convert.ToString(List[i].time),
+                    Name = List[i].name,
+                    Description = List[i].description,
+                    Theme = List[i].theme
+                });
+            }
+            return dataTimeEvents;
         }
         Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
         Color Yellow = (Color)ColorConverter.ConvertFromString("#FAEDCD");

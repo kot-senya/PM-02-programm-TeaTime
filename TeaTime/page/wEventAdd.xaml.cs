@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,15 +15,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace teaTime.page
+namespace teaTime
 {
     /// <summary>
     /// Логика взаимодействия для wEventAdd.xaml
     /// </summary>
-    public class Tea
+    public class Tea : INotifyPropertyChanged
     {
-        public string Num { get; set; }
+        private int _num;
+        public int Num {
+            get
+            {
+                return _num;
+            }
+            set
+            {
+                _num = value;
+                OnPropertyChanged("Num");
+            }
+        }
         public List<string> value { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
     }
     public partial class wEventAdd : Page
     {
@@ -79,7 +98,7 @@ namespace teaTime.page
         {
             try
             {
-                Tea tea = new Tea() { Num = (num++).ToString(), value = teaList };
+                Tea tea = new Tea() { Num = num++, value = teaList };
                 items.Add(tea);
                 nameTea.Items.Add(items);               
             }

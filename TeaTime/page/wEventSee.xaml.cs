@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace teaTime.page
+namespace teaTime
 {
     /// <summary>
     /// Логика взаимодействия для wEventSee.xaml

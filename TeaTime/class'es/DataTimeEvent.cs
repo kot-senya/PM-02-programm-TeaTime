@@ -7,7 +7,7 @@ using teaTime;
 
 namespace teaTime.class_es
 {
-    internal class DataTimeEvent
+    public class DataTimeEvent
     {
         public string Data { get; set; }
         public string Time { get; set; }
