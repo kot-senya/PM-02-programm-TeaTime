@@ -1,0 +1,11 @@
+﻿<Application x:Class="TeaTime.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TeaTime"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="GogoiaDeco">pack://appliction;,,,fonts/#gogoia deco</FontFamily>
+        <FontFamily x:Key="UniNeue-Bold">pack://appliction;,,,fonts/#Uni Neue Bold</FontFamily>        
+        <FontFamily x:Key="UniNeue-Regular">fonts/#Uni Neue Regular</FontFamily>
+    </Application.Resources>
+</Application>

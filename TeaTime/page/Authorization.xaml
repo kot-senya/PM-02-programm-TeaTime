@@ -1,0 +1,102 @@
+﻿<Page x:Class="teaTime.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:teaTime"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Authorization">
+
+    <Page.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FAEDCD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FAEDCD"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FAEDCD"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                                <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="#A77748"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="341*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Stretch="Uniform" Grid.RowSpan="2">
+            <Border Width="450" Height="450" Background="#D3DB94" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="70" Margin="250,0,250,0">
+                <StackPanel Margin="30,50,30,0">
+                    <TextBlock Text="Авторизация" FontFamily="{StaticResource GogoiaDeco}" FontSize="45" HorizontalAlignment="Center" Foreground="#A77748"/>
+                    <TextBlock Text="Логин" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="50 35 0 0" VerticalAlignment="Top" />
+                    <StackPanel>
+                        <Rectangle RadiusX="15" RadiusY="15" StrokeThickness="2" Fill="#FAEDCD" Stroke="#A77748" Width="320" Height="35" />
+                        <TextBox x:Name="aLogin"  Width="289" Height="30" Text="" FontFamily="{StaticResource UniNeue-Regular}" VerticalContentAlignment="Center" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="#FAEDCD" Foreground="#A77748" Margin="25 -36 25 0" />
+                    </StackPanel>
+                    <TextBlock Text="Пароль" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="50 20 0 0" VerticalAlignment="Top" />
+                    <StackPanel>
+                        <Rectangle RadiusX="15" RadiusY="15" StrokeThickness="2" Fill="#FAEDCD" Stroke="#A77748"  Width="320" Height="35"/>
+                        <PasswordBox x:Name="aPass" Password="" Width="289" Height="25" FontFamily="{StaticResource UniNeue-Regular}" FontSize="15" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="#FAEDCD" Foreground="#A77748" Margin="25 -36 20 0"/>
+                    </StackPanel>
+                    <Button x:Name="bAuth" Width="125" Height="30" Margin="0 75 0 0" Click="bAuth_Click" Content="ВОЙТИ" Foreground="#FAEDCD" Background="#A77748" FontFamily="{StaticResource GogoiaDeco}" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Style="{DynamicResource RoundedButtonStyle}"/>
+
+                    <Grid Width="125" Height="35">
+                        <Button x:Name="bReg" Width="125" Height="30" Margin="0 5 0 0" Click="bReg_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#D3DB94" Foreground="#FAEDCD" BorderThickness="0" Content="Регистрация" FontFamily="{StaticResource GogoiaDeco}" FontSize="15"/>
+                        <Line X1="25" Y1="27" X2="100" Y2="27" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#FAEDCD" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Viewbox>
+    </Grid>
+</Page>

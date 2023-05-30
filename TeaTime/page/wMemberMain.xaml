@@ -1,0 +1,203 @@
+﻿<Page x:Class="teaTime.page.wMemberMain"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:local="clr-namespace:teaTime.page"
+  mc:Ignorable="d" 
+  d:DesignHeight="450" d:DesignWidth="800"
+  Title="wMemberMain">
+    <Page.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#E8ECC8"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Viewbox Stretch="Uniform" Grid.RowSpan="2">
+        <Border Width="800" Height="450">
+            <Grid>
+                <TextBlock Text="Главная" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
+                <Button x:Name="bUserProfile" Width="240" Height="65" Margin="0 15 25 0" HorizontalAlignment="Right" FontFamily="{StaticResource GogoiaDeco}" Style="{DynamicResource RoundedButtonStyle}" ToolTip="Личный кабинет" Background="White" FontSize="15" Foreground="#A77748" VerticalAlignment="Top" Click="bUserProfile_Click">
+                    <Button.Content>
+                            <Grid>
+                                <Image x:Name="aImage" Width="50" Height="50" HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="aNameFIO" Text="Фамилия имя отчество" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 60 0"/>
+                            </Grid>
+                    </Button.Content>
+                </Button>
+                <Grid Height="250" Width="250" Margin="431,100,119,100">
+                    <Rectangle RadiusX="10" RadiusY="10" StrokeThickness="2" Fill="#FAEDCD" />
+                    <TextBlock Text="Мероприятие" FontFamily="{StaticResource GogoiaDeco}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" Foreground="#A77748"/>
+                    <TextBlock x:Name="aData" Text="25/25/55 15^15" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Center" Margin="0,29,0,-24" Foreground="#A77748"/>
+                    <TextBlock x:Name="aName0" Text="Название:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,54,0,-14" Foreground="#A77748"/>
+                    <TextBlock x:Name="aName" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,54,0,166" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="aTheme0" Text="Тема:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="11,90,0,-20" Foreground="#A77748"/>
+                    <TextBlock x:Name="aTheme" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,95,0,125" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="aDescript0" Text="Описание:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,138,0,-38" Foreground="#A77748"/>
+                    <TextBlock x:Name="aDescript" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75 125 0 0" Foreground="#A77748" Height="100" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock x:Name="aNoEvent" Text="Мероприятий на этот день не заплпнировано" Width="200" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,84,0,-78" Foreground="#A77748" TextWrapping="Wrap"/>
+                </Grid>
+                <Grid>
+                    <Rectangle RadiusX="10" RadiusY="10" StrokeThickness="2" Fill="#FAEDCD" Height="250" Width="250" Margin="104,100,446,100"/>
+                    <Viewbox Width="220" Height="190" Margin="120,0,0,0" HorizontalAlignment="Left">
+                        <Grid ShowGridLines="false" Background="#FAEDCD">
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type ColumnDefinition}">
+                                    <Setter Property="Width" Value="30"/>
+                                </Style>
+                                <Style x:Key="DayOfWeek">
+                                    <Setter Property="Grid.Row" Value="1"></Setter>
+                                    <Setter Property="TextBlock.Margin" Value="5"></Setter>
+                                </Style>
+                                <Style x:Key="OneDate">
+                                    <Setter Property="TextBlock.Margin" Value="5"></Setter>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="6" Fill="#FAEDCD"/>
+                            <Rectangle Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="1" Fill="#D3DB94"/>
+                            <Rectangle Grid.Row="0" Grid.ColumnSpan="7" Fill="#A77748" RadiusX="1" RadiusY="1" Height="2" Margin="0,25,0,0"/>
+
+                            <TextBlock Grid.ColumnSpan="7" Grid.Row="1" Text=" " HorizontalAlignment="Center" />
+
+                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">ПН</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">ВТ</TextBlock>
+                            <TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">СР</TextBlock>
+                            <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">ЧТ</TextBlock>
+                            <TextBlock Grid.Column="4" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">ПТ</TextBlock>
+                            <TextBlock Grid.Column="5" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">СБ</TextBlock>
+                            <TextBlock Grid.Column="6" Grid.Row="0" Style="{StaticResource DayOfWeek}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748">ВС</TextBlock>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="1" x:Name="b01" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="1" x:Name="b02" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="1" x:Name="b03" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="1" x:Name="b04" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="1" x:Name="b05" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="1" x:Name="b06" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="1" x:Name="b07" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="2" x:Name="b11" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="2" x:Name="b12" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="2" x:Name="b13" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="2" x:Name="b14" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="2" x:Name="b15" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="2" x:Name="b16" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="2" x:Name="b17" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="3" x:Name="b21" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="3" x:Name="b22" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="3" x:Name="b23" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="3" x:Name="b24" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="3" x:Name="b25" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="3" x:Name="b26" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="3" x:Name="b27" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="4" x:Name="b31" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="4" x:Name="b32" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="4" x:Name="b33" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="4" x:Name="b34" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="4" x:Name="b35" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="4" x:Name="b36" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="4" x:Name="b37" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="5" x:Name="b41" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="5" x:Name="b42" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="5" x:Name="b43" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="5" x:Name="b44" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="5" x:Name="b45" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="5" x:Name="b46" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="5" x:Name="b47" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+
+                            <Button Height="25" Width="25" Grid.Column="0" Grid.Row="6" x:Name="b51" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="1" Grid.Row="6" x:Name="b52" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="2" Grid.Row="6" x:Name="b53" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="3" Grid.Row="6" x:Name="b54" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="4" Grid.Row="6" x:Name="b55" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="5" Grid.Row="6" x:Name="b56" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                            <Button Height="25" Width="25" Grid.Column="6" Grid.Row="6" x:Name="b57" Click="b_Click" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}" FontFamily="{StaticResource UniNeue-Bold}" FontSize="12" Foreground="#A77748" HorizontalContentAlignment="Center" Content = ""/>
+                        </Grid>
+                    </Viewbox>
+                    <Button x:Name="bRight" Width="60" Height="45" Margin="294,365,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="bRight_Click" Content="> > >" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" Foreground="#A77748" Style="{DynamicResource RoundedButtonStyle}" Background="#FAEDCD"/>
+                    <Button x:Name="bLeft" Width="60" Height="45" Margin="164,365,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="bLeft_Click" Content="> > >" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" Foreground="#A77748" Style="{DynamicResource RoundedButtonStyle}" Background="#FAEDCD">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="-1"/>
+                        </Button.RenderTransform>
+                    </Button>
+                    <TextBlock x:Name="aMonth" Text="" Margin="105,109,0,314" HorizontalAlignment="Left" FontFamily="{StaticResource GogoiaDeco}" TextAlignment="Center" Foreground="#A77748" FontWeight="Bold" FontSize="20" Width="250"/>
+                </Grid>
+                <Button x:Name="bReg" Width="140" Height="45" Margin="0,366,170,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="bReg_Click" Content="Записаться" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" Foreground="#A77748" Style="{DynamicResource RoundedButtonStyle}" Background="#FAEDCD"/>
+            </Grid>
+        </Border>
+    </Viewbox>
+</Page>

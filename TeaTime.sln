@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeaTime", "TeaTime\TeaTime.csproj", "{C69C8471-3EEA-4D56-B7E3-6188C4979990}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C69C8471-3EEA-4D56-B7E3-6188C4979990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C69C8471-3EEA-4D56-B7E3-6188C4979990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C69C8471-3EEA-4D56-B7E3-6188C4979990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C69C8471-3EEA-4D56-B7E3-6188C4979990}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1DAED81-4AD7-4385-B24C-AA0A22A79A8A}
+	EndGlobalSection
+EndGlobal
