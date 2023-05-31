@@ -116,8 +116,7 @@
 
                         </Menu.Resources>
                         <MenuItem x:Name="btMain" Header="Главная" Height="30" Width="70" Background="#D3DB94" Template="{DynamicResource MenuMainItem}"></MenuItem>
-                        <MenuItem x:Name="btAdd" Click="bwrite_Click" Header="Добавить" Template="{DynamicResource MenuMainItem}"></MenuItem>
-                        <MenuItem Header="" IsEnabled="False" Width="450"></MenuItem>
+                        <MenuItem Header="" IsEnabled="False" Width="524"></MenuItem>
                         <MenuItem x:Name="btUser" Click="bUserProfile_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="205.5" Template="{DynamicResource MenuMainItem}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">

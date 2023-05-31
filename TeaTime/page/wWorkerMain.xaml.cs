@@ -35,15 +35,18 @@ namespace teaTime
         }
         private void bRead_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wEventSee(new DataTimeEvent { Data = aData.Text.Split(' ')[0], 
-                                                                                Time = aData.Text.Split(' ')[2],                    
-                                                                                Name = aName.Text,
-                                                                                Theme = aTheme.Text,
-                                                                                Description = aDescript.Text}));
+            NavigationService.Navigate(new wEventSee(new DataTimeEvent
+            {
+                Data = aData.Text.Split(' ')[0],
+                Time = aData.Text.Split(' ')[2],
+                Name = aName.Text,
+                Theme = aTheme.Text,
+                Description = aDescript.Text
+            }));
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wEventAdd());
+            NavigationService.Navigate(new wEventAdd((DateTime.Parse(aData.Text))));            
         }
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
@@ -291,11 +294,11 @@ namespace teaTime
                 dataTimeEvents.Add(new DataTimeEvent
                 {
                     Data = Convert.ToString(List[i].date).Split(' ')[0],
-                    Time = Convert.ToString(List[i].time).Split(':')[0]+":"+ Convert.ToString(List[i].time).Split(':')[1],
+                    Time = Convert.ToString(List[i].time).Split(':')[0] + ":" + Convert.ToString(List[i].time).Split(':')[1],
                     Name = List[i].name,
                     Description = List[i].description,
                     Theme = List[i].theme
-                });;
+                });
             }
             return dataTimeEvents;
         }

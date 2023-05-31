@@ -100,6 +100,28 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="white"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Static.Border}"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
 
@@ -107,7 +129,7 @@
         <Border Width="800" Height="450">
             <Grid>
                 <TextBlock Text="Добавить мероприятие" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
-                <Rectangle Fill="#FAEDCD" RadiusX="20" RadiusY="20" Height="350" Width="700" Margin="0,73,0,27"/>                
+                <Rectangle Fill="#FAEDCD" RadiusX="20" RadiusY="20" Height="350" Width="700" Margin="0,73,0,27"/>
                 <Button x:Name="bClose" Width="35" Height="35" Margin="0 15 50 0" Click="bClose_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle2}">
                     <Button.Content>
                         <Grid>
@@ -121,11 +143,11 @@
                 <Grid Height="350" Width="750" Margin="0,73,0,27">
                     <Grid>
                         <TextBlock Text="Дата" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="55,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.943" />
-                        <TextBlock Text="Время" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="239,25,0,0" VerticalAlignment="Top" />
-                        <DatePicker Width="120" Height="45" SelectedDateFormat="Short" Margin="100,25,0,-10" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FAEDCD" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" BorderThickness="0"/>
-                        <Grid Width="100" Height="20" Margin="290 25 0 0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBlock Text="Время" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="220,25,0,0" VerticalAlignment="Top" />
+                        <DatePicker x:Name="dp" Width="120" Height="45" FontSize="13" SelectedDateFormat="Short" Margin="90,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FAEDCD" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" BorderThickness="0" SelectedDateChanged="DatePicker_SelectedDateChanged" Initialized="DatePicker_Initialized"/>
+                        <Grid Width="125" Height="20" Margin="265 25 0 0" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <StackPanel Orientation="Horizontal">
-                                <TextBox x:Name="aTime" Width="69" BorderThickness="0" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" HorizontalContentAlignment="Stretch" />
+                                <TextBox x:Name="aTime" FontSize="13" IsReadOnly ="False"  Text="Выбор времени"  Width="95" BorderThickness="0" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" HorizontalContentAlignment="Stretch" />
                                 <ComboBox x:Name="nHour" Width="15" HorizontalAlignment="Left"  Background="White" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" BorderThickness="0" ToolTip="часы" SelectionChanged="nHour_SelectionChanged" Initialized="nHour_Initialized">
                                 </ComboBox>
                                 <ComboBox x:Name="nMin"  Width="15" HorizontalAlignment="Left"  Background="White" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" BorderThickness="0" ToolTip="Минуты" SelectionChanged="nMin_SelectionChanged" Initialized="nMin_Initialized">
@@ -141,12 +163,12 @@
                     </Grid>
                     <TextBlock Text="чайная Программа:" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="423,25,0,85" Foreground="#A77748"/>
                     <Grid Width="270" Height="270" Margin="370 35 0 0">
-                        <ListBox x:Name="nameTea" BorderThickness="0" SelectionChanged="nameTea_SelectionChanged_1" >
+                        <ListBox x:Name="nameTea" BorderThickness="0" SelectionChanged="nameTea_SelectionChanged" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Num , Mode=TwoWay}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
-                                        <ComboBox ItemsSource="{Binding value}" Width="200" Background="White" Foreground="#A77748" HorizontalContentAlignment="Stretch" FontSize="10" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" ToolTip="Чай"/>
+                                        <TextBlock Text="{Binding num , Mode=TwoWay}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
+                                        <ComboBox ItemsSource="{Binding value}" Width="200" Background="White" Foreground="#A77748" HorizontalContentAlignment="Stretch" FontSize="10" SelectedValue="{Binding endTea}" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" ToolTip="Чай"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

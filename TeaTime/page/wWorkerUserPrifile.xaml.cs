@@ -30,11 +30,6 @@ namespace teaTime
             NavigationService.Navigate(new wWorkerMain());
         }
 
-        private void btAdd_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new wEventAdd());
-        }
-
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerChangeProfile());

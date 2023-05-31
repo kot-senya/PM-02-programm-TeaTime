@@ -11,7 +11,8 @@ namespace TeaTime
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Controls;
+
     public partial class Tea
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,5 +26,10 @@ namespace TeaTime
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProgrammEvent> ProgrammEvent { get; set; }
+
+        public static implicit operator Tea(ComboBox v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
