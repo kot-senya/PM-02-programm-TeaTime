@@ -35,7 +35,11 @@ namespace teaTime
         }
         private void bRead_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wEventSee());
+            NavigationService.Navigate(new wEventSee(new DataTimeEvent { Data = aData.Text.Split(' ')[0], 
+                                                                                Time = aData.Text.Split(' ')[2],                    
+                                                                                Name = aName.Text,
+                                                                                Theme = aTheme.Text,
+                                                                                Description = aDescript.Text}));
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
@@ -270,9 +274,6 @@ namespace teaTime
                     return 0;
             }
         }
-        /// <summary>
-        /// новый код !!!
-        /// </summary>
         List<DataTimeEvent> dataTime = new List<DataTimeEvent>();
         private void loadedData()
         {
@@ -281,28 +282,24 @@ namespace teaTime
             {
                 dataTime = Converter(DB.Event.ToList());
             }
-            //    dataTime.Add(new DataTimeEvent { Data = "15.05.2023", Time = "15:00", Name = "Proba 1", Theme = "Proba 1", Description = "Proba 1" });
-            //    dataTime.Add(new DataTimeEvent { Data = "25.05.2023", Time = "15:00", Name = "Proba 2", Theme = "Proba 2", Description = "Proba 2" });
-            //    dataTime.Add(new DataTimeEvent { Data = "10.04.2023", Time = "15:00", Name = "Proba 3", Theme = "Proba 3", Description = "Proba 3" });
-            //    dataTime.Add(new DataTimeEvent { Data = "28.06.2023", Time = "15:00", Name = "Proba 4", Theme = "Proba 4", Description = "Proba 4" });
-            //    dataTime.Add(new DataTimeEvent { Data = "02.06.2023", Time = "15:00", Name = "Proba 5", Theme = "Proba 5", Description = "Proba 5" });
         }
-        public List<DataTimeEvent> Converter (List<Event> List)
+        public List<DataTimeEvent> Converter(List<Event> List)
         {
             List<DataTimeEvent> dataTimeEvents = new List<DataTimeEvent>();
-            for(int i = 0; i < List.Count; i++)
+            for (int i = 0; i < List.Count; i++)
             {
                 dataTimeEvents.Add(new DataTimeEvent
                 {
                     Data = Convert.ToString(List[i].date).Split(' ')[0],
-                    Time = Convert.ToString(List[i].time),
+                    Time = Convert.ToString(List[i].time).Split(':')[0]+":"+ Convert.ToString(List[i].time).Split(':')[1],
                     Name = List[i].name,
                     Description = List[i].description,
                     Theme = List[i].theme
-                });
+                });;
             }
             return dataTimeEvents;
         }
+
         Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
         Color Yellow = (Color)ColorConverter.ConvertFromString("#FAEDCD");
         Color Brown = (Color)ColorConverter.ConvertFromString("#A77748");

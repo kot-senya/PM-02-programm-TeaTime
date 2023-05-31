@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using teaTime.class_es;
 
 namespace teaTime
 {
@@ -20,11 +21,20 @@ namespace teaTime
     /// </summary>
     public partial class wEventSee : Page
     {
-        public wEventSee()
+        public wEventSee(DataTimeEvent events)
         {
             InitializeComponent();
+            init(events);
         }
 
+        private void init(DataTimeEvent events)
+        {
+            aDate.Text = events.Data;
+            aTime.Text = events.Time;
+            aDescript.Text = events.Description;
+            aName.Text = events.Name;
+            aTheme.Text = events.Theme;
+        }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerMain());
