@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,22 @@ namespace teaTime
         {
             InitializeComponent();
         }
+        public bool check()
+        {
+            try
+            {
+                Regex checkName = new Regex(@"^[А-я ,.'-]+$");
+                Regex checkEmail = new Regex(@"^\\S+@\\S+\\.\\S+$");
+                Regex checkNumberPhone = new Regex("^((\\+?7|8))\\d{10}$");
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+
+            }
+        }
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
             //код
