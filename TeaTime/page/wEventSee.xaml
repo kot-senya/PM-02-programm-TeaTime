@@ -143,16 +143,22 @@
                             </GroupBox.Header>
                             <StackPanel>
                                 <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 0, 0, 10" Height="275" BorderBrush="#D3DB94">
-                                    <TabItem x:Name="teaProgramm" >
+                                    <TabItem x:Name="tea" >
                                         <TabItem.Header>
                                             <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
                                                 Чайная программа
                                             </Label>
                                         </TabItem.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                            <TextBlock Text="{Binding num}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
-                                            <TextBlock Text="{Binding value}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10"/>
-                                        </StackPanel>
+                                        <ListBox x:Name="teaProgramm" BorderThickness="0">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding num}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
+                                                        <TextBlock Text="{Binding value}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
                                     </TabItem>
                                     <TabItem x:Name="guests">
                                         <TabItem.Header >
@@ -161,10 +167,16 @@
                                             </Label>
                                         </TabItem.Header>
                                         <StackPanel>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <TextBlock Text="{Binding num}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
-                                                <TextBlock Text="{Binding value}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10"/>
-                                            </StackPanel>
+                                            <ListBox x:Name="guestsList" BorderThickness="0">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding num}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
+                                                            <TextBlock Text="{Binding value}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
                                         </StackPanel>
                                     </TabItem>
                                 </TabControl>
