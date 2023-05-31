@@ -108,7 +108,7 @@ namespace teaTime
         {
             try
             {
-                using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
+                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
                 {
                     teaList = Converter(DB.Tea.ToList());
                     items.Add(new TeaTime() { num = items.Count + 1, value = teaList });
@@ -171,7 +171,7 @@ namespace teaTime
             dp.BlackoutDates.AddDatesInPast();
             dp.BlackoutDates.Add(new CalendarDateRange(DateTime.Now));
 
-            using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
+            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
             {
                 List<Event> List = DB.Event.ToList();
                 for (int i = 0; i < List.Count; i++)

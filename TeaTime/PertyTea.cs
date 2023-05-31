@@ -12,18 +12,9 @@ namespace TeaTime
     using System;
     using System.Collections.Generic;
     
-    public partial class Tea
+    public partial class PertyTea
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tea()
-        {
-            this.ProgrammEvent = new HashSet<ProgrammEvent>();
-        }
-    
-        public int idTea { get; set; }
-        public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProgrammEvent> ProgrammEvent { get; set; }
+        public System.DateTime Date { get; set; }
+        public string Name { get; set; }
     }
 }

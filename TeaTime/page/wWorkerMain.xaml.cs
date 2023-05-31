@@ -281,7 +281,7 @@ namespace teaTime
         private void loadedData()
         {
             //цикл с загрузкой даты и ее описания
-            using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
+            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
             {
                 dataTime = Converter(DB.Event.ToList());
             }

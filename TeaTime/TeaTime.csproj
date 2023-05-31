@@ -64,17 +64,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="class%27es\DataTimeEvent.cs" />
-    <Compile Include="Event.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Member.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
+    <Compile Include="Base.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="class%27es\DataTimeEvent.cs" />
+    <Compile Include="Event.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="goPhoto.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="page\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
@@ -106,26 +119,29 @@
     <Compile Include="page\wWorkerUserPrifile.xaml.cs">
       <DependentUpon>wWorkerUserPrifile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PertyTea.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProgrammEvent.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Record.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Tea.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Worker.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -181,16 +197,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -208,15 +214,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Resource Include="fonts\gogoia-deco.ttf" />
     <Resource Include="fonts\UniNeueBold.ttf" />
     <Resource Include="fonts\UniNeueRegular.ttf" />
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <EntityDeploy Include="Base.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Base.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Base.edmx.diagram">
+      <DependentUpon>Base.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -231,15 +237,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
+    <Content Include="Base.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Base.edmx</DependentUpon>
+      <LastGenOutput>Base.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="Base.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>Base.edmx</DependentUpon>
+      <LastGenOutput>Base.cs</LastGenOutput>
     </Content>
     <Content Include="pic\feather.png" />
     <Content Include="pic\home.png" />

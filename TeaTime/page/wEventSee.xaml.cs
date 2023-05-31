@@ -44,10 +44,7 @@ namespace teaTime
         }
         private void loadData()
         {
-            using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
-            {
-                List<DataSee> dataSees = from idEvent in 
-            }
+            
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {

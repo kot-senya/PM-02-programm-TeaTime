@@ -15,10 +15,10 @@ namespace TeaTime
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class KotkovaISazonovaEntities1 : DbContext
+    public partial class KotkovaISazonovaEntities_ : DbContext
     {
-        public KotkovaISazonovaEntities1()
-            : base("name=KotkovaISazonovaEntities1")
+        public KotkovaISazonovaEntities_()
+            : base("name=KotkovaISazonovaEntities_")
         {
         }
     
@@ -34,6 +34,8 @@ namespace TeaTime
         public virtual DbSet<Tea> Tea { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
         public virtual DbSet<ProgrammEvent> ProgrammEvent { get; set; }
+        public virtual DbSet<goPhoto> goPhoto { get; set; }
+        public virtual DbSet<PertyTea> PertyTea { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
