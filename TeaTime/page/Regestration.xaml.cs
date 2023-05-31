@@ -32,6 +32,17 @@ namespace teaTime
                 Regex checkName = new Regex(@"^[А-я ,.'-]+$");
                 Regex checkEmail = new Regex(@"^\\S+@\\S+\\.\\S+$");
                 Regex checkNumberPhone = new Regex("^((\\+?7|8))\\d{10}$");
+                bool flag = true;
+
+                if(checkName.IsMatch(aSurname.Text))
+                {
+
+                }
+                else
+                {
+                    flag = false;
+                }
+                return flag;
 
             }
             catch (Exception ex)
