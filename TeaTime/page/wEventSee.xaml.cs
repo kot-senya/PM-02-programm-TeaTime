@@ -13,9 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using teaTime.class_es;
+using TeaTime;
 
 namespace teaTime
 {
+    public class DataSee
+    {
+        public int num { get; set; }
+        public string value { get; set; }
+    }
     /// <summary>
     /// Логика взаимодействия для wEventSee.xaml
     /// </summary>
@@ -25,6 +31,7 @@ namespace teaTime
         {
             InitializeComponent();
             init(events);
+            loadData();
         }
 
         private void init(DataTimeEvent events)
@@ -34,6 +41,13 @@ namespace teaTime
             aDescript.Text = events.Description;
             aName.Text = events.Name;
             aTheme.Text = events.Theme;
+        }
+        private void loadData()
+        {
+            using (KotkovaISazonovaEntities1 DB = new KotkovaISazonovaEntities1())
+            {
+                List<DataSee> dataSees = from idEvent in 
+            }
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
