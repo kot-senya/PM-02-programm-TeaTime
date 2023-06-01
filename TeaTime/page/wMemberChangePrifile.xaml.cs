@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeaTime;
 
 namespace teaTime
 {
@@ -20,14 +21,16 @@ namespace teaTime
     /// </summary>
     public partial class wMemberChangePrifile : Page
     {
-        public wMemberChangePrifile()
+        Member member = new Member();
+        public wMemberChangePrifile(Member user)
         {
             InitializeComponent();
+            member = user;
         }
 
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wMemberUserPrifile());
+            NavigationService.Navigate(new wMemberUserPrifile(member));
         }
     }
 }

@@ -62,11 +62,13 @@ namespace teaTime
     {
         ObservableCollection<TeaTime> items = new ObservableCollection<TeaTime>();
         List<string> teaList = new List<string>();
-        public wEventAdd(DateTime data)
+        Worker worker = new Worker();
+        public wEventAdd(DateTime data, Worker user)
         {
             InitializeComponent();
             dp.Text = data.ToString();
             //выгрузка из бд
+            worker = user;
             nameTeaLoaded(teaList);
         }
 
@@ -133,18 +135,13 @@ namespace teaTime
 
         private void nameTea_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var name = (listbox.SelectedItem as nameTea).Name;
-            //string t = (nameTea.SelectedItem as ComboBoxItem).SelectedItem.ToString();
-            //MessageBox.Show((nameTea.SelectedItem as TextBlock).Text);
-
-
             nameTeaLoaded(teaList);
             nameTea.ItemsSource = items;
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new wWorkerMain());
+            NavigationService.Navigate(new wWorkerMain(worker));
         }
 
         private void bwrite_Click(object sender, RoutedEventArgs e)
@@ -158,7 +155,7 @@ namespace teaTime
                     string b = a.endTea;
                 }
             }
-            //NavigationService.Navigate(new wWorkerMain());
+            NavigationService.Navigate(new wWorkerMain(worker));
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

@@ -25,9 +25,11 @@ namespace teaTime
     /// </summary>
     public partial class wWorkerMain : Page
     {
+        Worker worker = new Worker();
         public wWorkerMain(Worker user)
         {
             InitializeComponent();
+            worker = user;
             loadedCalendar();
             loadedData();
             loadedColorData();
@@ -42,15 +44,15 @@ namespace teaTime
                 Name = aName.Text,
                 Theme = aTheme.Text,
                 Description = aDescript.Text
-            }));
+            }), worker);
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wEventAdd((DateTime.Parse(aData.Text))));            
+            NavigationService.Navigate(new wEventAdd((DateTime.Parse(aData.Text)), worker));
         }
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerUserPrifile());
+            NavigationService.Navigate(new wWorkerUserPrifile(worker));
         }
         private void b_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +74,6 @@ namespace teaTime
             }
             string dataheader = day + "." + month + "." + int.Parse(aMonth.Text.Split(' ')[1]);
             changeEventDescription(dataheader);
-            //MessageBox.Show((sender as Button).Name);//отображение названия кнопки
         }
         private void loadedCalendar()
         {

@@ -35,7 +35,7 @@ namespace teaTime
 
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerChangeProfile());
+            NavigationService.Navigate(new wWorkerChangeProfile(worker));
         }
 
         private void tInfo_Loaded(object sender, RoutedEventArgs e)

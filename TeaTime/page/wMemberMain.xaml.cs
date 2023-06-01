@@ -28,9 +28,11 @@ namespace teaTime
     /// </summary>
     public partial class wMemberMain : Page
     {
+        Member member = new Member();
         public wMemberMain(Member user)
         {
             InitializeComponent();
+            member = user;
             loadedCalendar();
             loadedData();
             loadedColorData();
@@ -38,11 +40,11 @@ namespace teaTime
         }
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wMemberUserPrifile());
+            NavigationService.Navigate(new wMemberUserPrifile(member));
         }
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new wMemberUserPrifile(member));
         }
         private void b_Click(object sender, RoutedEventArgs e)
         {
