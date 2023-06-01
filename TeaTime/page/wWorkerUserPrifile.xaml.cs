@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,22 @@ namespace teaTime
             aFIO.Text = worker.surname + " " + worker.name + " " + worker.middleName;
             aPhoneNumber.Text = worker.phone;
             aEmail.Text = worker.email;
+        }
+        ObservableCollection<TeaTime> items = new ObservableCollection<TeaTime>();
+        private void eventClose_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+                {
+                    items.Add(new TeaTime() { num = items.Count + 1, value = teaList });
+                    eventClose.ItemsSource = items;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
