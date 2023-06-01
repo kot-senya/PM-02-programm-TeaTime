@@ -14,7 +14,16 @@ namespace teaTime
         public void TestTOREGISTRATION()
         {
             Worker worker = new Worker();
-            Assert.IsTrue(Checks.checkWorker("even52", "1", out worker));
+            Assert.IsTrue(Checks.checkWorker("even52", "1", out worker)); // юнит тест который при правильном заполнении полей для авторизации результатом теста будет являться "true"
+
         }
+        [TestMethod]
+        public void TestNOTOREGISTRATION()
+        {
+            Worker worker = new Worker();
+            Assert.IsTrue(Checks.checkWorker("uutgfk", "790", out worker)); // юнит тест который при правильном заполнении полей для авторизации результатом теста будет являться "true"
+
+        }
+
     }
 }
