@@ -64,6 +64,29 @@
             </Setter>
         </Style>
 
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="white"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Static.Border}"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <ControlTemplate x:Key="MenuMainItem" TargetType="{x:Type MenuItem}">
             <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                 <Grid VerticalAlignment="Center">
@@ -168,13 +191,23 @@
                     </Grid.Resources>
                 </Grid>
                 <Grid Margin="45,250,50,24">
-                    <ListBox x:Name="nameTea" BorderThickness="0" SelectionChanged="nameTea_SelectionChanged" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
+                    <ListBox x:Name="eventClose" BorderThickness="0" SelectionChanged="eventClose_SelectionChanged" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding num , Mode=TwoWay}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
-                                    <ComboBox ItemsSource="{Binding value}" Width="200" Background="White" Foreground="#A77748" HorizontalContentAlignment="Stretch" FontSize="10" SelectedValue="{Binding endTea}" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" ToolTip="Чай"/>
-                                </StackPanel>
+                                <Viewbox Width="100" Height="100">
+                                    <Grid>
+                                        <Rectangle RadiusX="10" RadiusY="10" Fill="#D3DB94"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="aData" Text="" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Center" Margin="0,29,0,-24" Foreground="#A77748"/>
+                                            <TextBlock x:Name="aName0" Text="Название:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,54,0,-14" Foreground="#A77748"/>
+                                            <TextBlock x:Name="aName" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,54,0,166" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock x:Name="aTheme0" Text="Тема:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="11,90,0,-20" Foreground="#A77748"/>
+                                            <TextBlock x:Name="aTheme" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,95,0,125" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock x:Name="aDescript0" Text="Описание:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,138,0,-38" Foreground="#A77748"/>
+                                            <TextBlock x:Name="aDescript" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75 125 0 0" Foreground="#A77748" Height="100" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                        </StackPanel>                                        
+                                    </Grid>
+                                </Viewbox>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
