@@ -104,22 +104,30 @@ namespace teaTime
             //код
             if (check())
             {
-                List<Member> List = DataBaseConnect.DataBase.Member.ToList();
-                var lastItem = List.Last();
-                Member newUser = new Member()
+                try
                 {
-                    surname = aSurname.Text,
-                    name = aName.Text,
-                    middleName = aMiddleName.Text,
-                    phone = aPhoneNum.Text,
-                    email = aEmail.Text,
-                    login = aLogin.Text,
-                    password = aPass.Password
-                };
-                DataBaseConnect.DataBase.Member.Add(newUser);
-                DataBaseConnect.DataBase.SaveChanges();
-                DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
-                NavigationService.Navigate(new Authorization());
+                    List<Member> List = DataBaseConnect.DataBase.Member.ToList();
+                    var lastItem = List.Last();
+                    Member newUser = new Member()
+                    {
+                        surname = aSurname.Text,
+                        name = aName.Text,
+                        middleName = aMiddleName.Text,
+                        phone = aPhoneNum.Text,
+                        email = aEmail.Text,
+                        login = aLogin.Text,
+                        password = aPass.Password
+                    };
+                    DataBaseConnect.DataBase.Member.Add(newUser);
+                    DataBaseConnect.DataBase.SaveChanges();
+                    DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+                    NavigationService.Navigate(new Authorization());
+                }
+                catch
+                {
+                    MessageBox.Show("При регистрации возникли технические неполадки попробуйте еще раз");
+                }
+
             }
             else
             {
