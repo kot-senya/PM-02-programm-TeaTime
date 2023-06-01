@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using teaTime.class_es;
 using System.ComponentModel;
+using TeaTime;
 
 namespace teaTime
 {
@@ -27,7 +28,7 @@ namespace teaTime
     /// </summary>
     public partial class wMemberMain : Page
     {
-        public wMemberMain()
+        public wMemberMain(Member user)
         {
             InitializeComponent();
             loadedCalendar();

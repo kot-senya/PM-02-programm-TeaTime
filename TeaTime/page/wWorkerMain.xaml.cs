@@ -25,7 +25,7 @@ namespace teaTime
     /// </summary>
     public partial class wWorkerMain : Page
     {
-        public wWorkerMain()
+        public wWorkerMain(Worker user)
         {
             InitializeComponent();
             loadedCalendar();

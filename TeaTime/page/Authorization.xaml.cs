@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using teaTime;
+using TeaTime;
 
 namespace teaTime
 {
@@ -25,16 +26,17 @@ namespace teaTime
         {
             InitializeComponent();
         }
-
+        Worker worker = new Worker();
+        Member member = new Member();
         private void bAuth_Click(object sender, RoutedEventArgs e)
         {
-            if(aLogin.Text.ToLower() == "работник")
+            if(checkWorker())
             {
-                NavigationService.Navigate(new wWorkerMain());
+                NavigationService.Navigate(new wWorkerMain(worker));
             }
-            else if (aLogin.Text.ToLower() == "член клуба")
+            else if (checkMember())
             {
-                NavigationService.Navigate(new wMemberMain());
+                NavigationService.Navigate(new wMemberMain(member));
             }
             else
             {
@@ -42,7 +44,40 @@ namespace teaTime
             }
             
         }
-
+        public bool checkWorker()
+        {
+            bool check = false;
+            using(KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+            {
+                List<Worker> w = DB.Worker.ToList();
+                for(int i = 0; i < w.Count; i++)
+                {
+                    if(w[i].login == aLogin.Text && w[i].password == aPass.Password)
+                    {
+                        check = true;
+                        worker = w[i];
+                    }
+                }
+            }
+            return check;
+        }
+        public bool checkMember()
+        {
+            bool check = false;
+            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+            {
+                List<Member> m = DB.Member.ToList();
+                for (int i = 0; i < m.Count; i++)
+                {
+                    if (m[i].login == aLogin.Text && m[i].password == aPass.Password)
+                    {
+                        check = true;
+                        member = m[i];
+                    }
+                }
+            }
+            return check;
+        }
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Regestration());

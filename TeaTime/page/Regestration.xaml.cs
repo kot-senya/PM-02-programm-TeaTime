@@ -29,6 +29,7 @@ namespace teaTime
         Color Red = (Color)ColorConverter.ConvertFromString("#F1736F");
         public bool check()
         {
+
             try
             {
                 Regex checkName = new Regex(@"^[А-я ,.'-]+$");
@@ -82,7 +83,7 @@ namespace teaTime
                     ePhoneNumber.Fill = new SolidColorBrush(Red);
                     flag = false;
                 }
-                if (aPass.Password == arePass.Password)
+                if (aPass.Password == arePass.Password && aPass.Password != "")
                 {
                     ePass.Fill = new SolidColorBrush(Green);
                 }

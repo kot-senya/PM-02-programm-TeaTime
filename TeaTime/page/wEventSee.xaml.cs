@@ -87,7 +87,7 @@ namespace teaTime
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerMain());
+            //NavigationService.Navigate(new wWorkerMain());
         }
     }
 }

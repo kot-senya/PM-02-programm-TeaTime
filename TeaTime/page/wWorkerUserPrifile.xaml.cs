@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeaTime;
 
 namespace teaTime
 {
@@ -20,14 +21,16 @@ namespace teaTime
     /// </summary>
     public partial class wWorkerUserPrifile : Page
     {
-        public wWorkerUserPrifile()
+        Worker worker = new Worker();
+        public wWorkerUserPrifile(Worker user)
         {
             InitializeComponent();
+            this.worker = user;
         }
 
         private void btMain_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerMain());
+            NavigationService.Navigate(new wWorkerMain(worker));
         }
 
         private void bChange_Click(object sender, RoutedEventArgs e)

@@ -144,7 +144,7 @@ namespace teaTime
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerMain());
+            //NavigationService.Navigate(new wWorkerMain());
         }
 
         private void bwrite_Click(object sender, RoutedEventArgs e)
@@ -158,7 +158,7 @@ namespace teaTime
                     string b = a.endTea;
                 }
             }
-            NavigationService.Navigate(new wWorkerMain());
+            //NavigationService.Navigate(new wWorkerMain());
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

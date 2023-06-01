@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeaTime;
 
 namespace teaTime
 {
@@ -38,38 +39,26 @@ namespace teaTime
     }
     public partial class wMemberUserPrifile : Page
     {
-        public wMemberUserPrifile()
+        Member member = new Member();
+        public wMemberUserPrifile(Member user)
         {
             InitializeComponent();
+            this.member = user;
         }
 
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wMemberChangePrifile());
+            NavigationService.Navigate(new wMemberChangePrifile(member));
         }
 
         private void bHome_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wMemberMain());
+            NavigationService.Navigate(new wMemberMain(member));
         }
         private BindingList<Things> db;
         private void tInfo_Loaded(object sender, RoutedEventArgs e)
         {
-            db = new BindingList<Things>();
-            for(int i = 0; i < 15; i++)
-            {
-                Things a = new Things()
-                {
-                    Num = 1,
-                    Name = "парарарарар",
-                    Date = "10.02.2025",
-                    Time = "18:00",
-                    Theme = "саоатрмолвм",
-                    Descript = "ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа",
-                };
-                db.Add(a);
-            }          
-            //tInfo.ItemsSource = db;
+            
         }
 
         private void tInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
