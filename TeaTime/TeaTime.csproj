@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Base.edmx</DependentUpon>
     </Compile>
+    <Compile Include="class%27es\Check.cs" />
     <Compile Include="class%27es\DataBaseConnect.cs" />
     <Compile Include="class%27es\DataTimeEvent.cs" />
     <Compile Include="Event.cs">

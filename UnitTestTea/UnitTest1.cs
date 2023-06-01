@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TeaTime;
+using teaTime;
 using System;
 using System.Net;
+using Microsoft.Rest.ClientRuntime.Azure.Authentication.Utilities;
 
-namespace UnitTestTea
+namespace teaTime
 {
     [TestClass]
     public class UnitTest1
@@ -10,8 +13,8 @@ namespace UnitTestTea
         [TestMethod]
         public void TestTOREGISTRATION()
         {
-            bool c = new Authorization();
-            Assert.IsTrue(Authorization().(new checkWorker("even52", "1"));
+            Worker worker = new Worker();
+            Assert.IsTrue(Checks.checkWorker("even52", "1", out worker));
         }
     }
 }

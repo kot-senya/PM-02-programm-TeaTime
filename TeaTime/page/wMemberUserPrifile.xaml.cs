@@ -55,7 +55,7 @@ namespace teaTime
         {
             NavigationService.Navigate(new wMemberMain(member));
         }
-        private BindingList<Things> db;
+        
         private void tInfo_Loaded(object sender, RoutedEventArgs e)
         {
             
