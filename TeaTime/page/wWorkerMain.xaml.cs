@@ -30,6 +30,7 @@ namespace teaTime
         {
             InitializeComponent();
             worker = user;
+            aFio.Text = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
             loadedCalendar();
             loadedData();
             loadedColorData();

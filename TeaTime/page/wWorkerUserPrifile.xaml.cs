@@ -25,7 +25,8 @@ namespace teaTime
         public wWorkerUserPrifile(Worker user)
         {
             InitializeComponent();
-            this.worker = user;
+            worker = user;
+            aFio.Text = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
         }
 
         private void btMain_Click(object sender, RoutedEventArgs e)
@@ -38,12 +39,7 @@ namespace teaTime
             NavigationService.Navigate(new wWorkerChangeProfile(worker));
         }
 
-        private void tInfo_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void tInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void loadData()
         {
 
         }

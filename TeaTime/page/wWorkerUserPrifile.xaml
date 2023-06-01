@@ -163,13 +163,13 @@
                             <Setter Property="ScrollViewer.Background" Value="#E8ECC8" />
                         </Style>
                     </Grid.Resources>
-                    <DataGrid x:Name="tInfo" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True" Loaded="tInfo_Loaded"
+                    <DataGrid x:Name="tInfo" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True"
                            Width="700" Height="170" Canvas.Top="510" Canvas.Left="40" ColumnHeaderHeight="25" 
                            FontFamily="{StaticResource UniNeue-Bold}" Foreground="#A77748" FontSize="15"
                            BorderBrush="#D3DB94" Background="#FAEDCD"                           
                            RowBackground="#FAEDCD" AlternatingRowBackground="#FAEDCD" VerticalGridLinesBrush="#D3DB94"  
                            HorizontalGridLinesBrush="#D3DB94"  
-                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="42,252,58,28" SelectionChanged="tInfo_SelectionChanged"                              
+                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="42,252,58,28"                            
                            >
                         <DataGrid.Resources>
 
