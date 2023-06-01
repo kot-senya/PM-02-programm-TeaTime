@@ -44,7 +44,7 @@ namespace teaTime
                 Name = aName.Text,
                 Theme = aTheme.Text,
                 Description = aDescript.Text
-            }), worker);
+            }, worker));
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
