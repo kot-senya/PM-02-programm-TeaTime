@@ -27,9 +27,11 @@ namespace teaTime
     /// </summary>
     public partial class wEventSee : Page
     {
-        public wEventSee(DataTimeEvent events)
+        Worker worker = new Worker();
+        public wEventSee(DataTimeEvent events, Worker user)
         {
             InitializeComponent();
+            worker = user;
             init(events);
             loadData();
         }
@@ -87,7 +89,7 @@ namespace teaTime
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new wWorkerMain());
+            NavigationService.Navigate(new wWorkerMain(worker));
         }
     }
 }
