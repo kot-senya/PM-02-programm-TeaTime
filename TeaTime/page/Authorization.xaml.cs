@@ -34,7 +34,7 @@ namespace teaTime
             {
                 NavigationService.Navigate(new wWorkerMain(worker));
             }
-            else if (checkMember())
+            else if (checkMember(aLogin.Text, aPass.Password))
             {
                 NavigationService.Navigate(new wMemberMain(member));
             }
