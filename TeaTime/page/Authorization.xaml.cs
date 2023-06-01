@@ -20,39 +20,18 @@ namespace teaTime
     /// <summary>
     /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class Authorization : Page
+    public class Check
     {
-        public Authorization()
-        {
-            InitializeComponent();
-        }
-        Worker worker = new Worker();
-        Member member = new Member();
-        private void bAuth_Click(object sender, RoutedEventArgs e)
-        {
-            if(checkWorker(aLogin.Text, aPass.Password))
-            {
-                NavigationService.Navigate(new wWorkerMain(worker));
-            }
-            else if (checkMember(aLogin.Text, aPass.Password))
-            {
-                NavigationService.Navigate(new wMemberMain(member));
-            }
-            else
-            {
-                MessageBox.Show("Не найдено");
-            }
-            
-        }
-        public bool checkWorker(string login, string password)
+        public static bool checkWorker(string login, string password, out Worker worker)
         {
             bool check = false;
-            using(KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+            worker = new Worker();
+            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
             {
                 List<Worker> w = DB.Worker.ToList();
-                for(int i = 0; i < w.Count; i++)
+                for (int i = 0; i < w.Count; i++)
                 {
-                    if(w[i].login == login && w[i].password == password)
+                    if (w[i].login == login && w[i].password == password)
                     {
                         check = true;
                         worker = w[i];
@@ -61,9 +40,10 @@ namespace teaTime
             }
             return check;
         }
-        public bool checkMember(string login, string password)
+        public static bool checkMember(string login, string password, out Member member)
         {
             bool check = false;
+            member = new Member();
             using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
             {
                 List<Member> m = DB.Member.ToList();
@@ -78,6 +58,33 @@ namespace teaTime
             }
             return check;
         }
+    }
+    public partial class Authorization : Page
+    {
+        public Authorization()
+        {
+            InitializeComponent();
+        }
+
+        Worker worker = new Worker();
+        Member member = new Member();
+
+        private void bAuth_Click(object sender, RoutedEventArgs e)
+        {
+            if(Check.checkWorker(aLogin.Text, aPass.Password, out worker))
+            {
+                NavigationService.Navigate(new wWorkerMain(worker));
+            }
+            else if (Check.checkMember(aLogin.Text, aPass.Password, out member))
+            {
+                NavigationService.Navigate(new wMemberMain(member));
+            }
+            else
+            {
+                MessageBox.Show("Не найдено");
+            }
+            
+        }       
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Regestration());
