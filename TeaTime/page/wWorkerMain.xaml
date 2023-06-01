@@ -120,7 +120,7 @@
                         <MenuItem x:Name="btUser" Click="bUserProfile_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="205.5" Template="{DynamicResource MenuMainItem}">
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="aFio" Text="Фамилия имя отчество"  VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="aFio" Text="Фамилия имя отчество" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                     <Image x:Name="aImage" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0 10 0"/>
                                 </StackPanel>
                             </MenuItem.Header>
