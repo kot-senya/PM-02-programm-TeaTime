@@ -155,13 +155,13 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <Ellipse x:Name="eSurname" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Фамилия должна начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
-                                <Ellipse x:Name="eName" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Фамилия должна начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
-                                <Ellipse x:Name="eMiddleName" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Фамилия должна начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
-                                <Ellipse x:Name="ePhoneNumber" Fill="#F1736F" Width="15" Height="15" Margin="10 20 0 0" HorizontalAlignment="Right" ToolTip="Пример телефона: +79584753100"/>
-                                <Ellipse x:Name="eEmail" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Пример почты: e_mail@pochta.com"/>
-                                <Ellipse x:Name="eLogin" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Логин не уникален, попробуйте другой вариант"/>
-                                <Ellipse x:Name="ePass" Fill="#F1736F" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="введенные пароли не совпадают"/>
+                                <Ellipse x:Name="eSurname" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Фамилия должна начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
+                                <Ellipse x:Name="eName" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Имя должно начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
+                                <Ellipse x:Name="eMiddleName" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Отчество должно начинаться с заглавной буквы и состоять больше чем из 2 букв"/>
+                                <Ellipse x:Name="ePhoneNumber" Fill="#D3DB94" Width="15" Height="15" Margin="10 20 0 0" HorizontalAlignment="Right" ToolTip="Пример телефона: +79584753100"/>
+                                <Ellipse x:Name="eEmail" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Пример почты: e_mail@pochta.com"/>
+                                <Ellipse x:Name="eLogin" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="Логин не уникален, попробуйте другой вариант"/>
+                                <Ellipse x:Name="ePass" Fill="#D3DB94" Width="15" Height="15" Margin="10 15 0 0" HorizontalAlignment="Right" ToolTip="введенные пароли не совпадают"/>
                             </StackPanel>
                         </Grid>
                         <Button x:Name="bReg" Width="170" Height="35" Margin="0 15 0 0" Click="bReg_Click" 

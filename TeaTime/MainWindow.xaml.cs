@@ -24,7 +24,7 @@ namespace TeaTime
         public MainWindow()
         {
             InitializeComponent();
-            frame.Content = new wWorkerMain();
+            frame.Content = new Authorization();
         }
     }
 }
