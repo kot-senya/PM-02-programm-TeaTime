@@ -25,8 +25,7 @@ namespace teaTime
         public Regestration()
         {
             InitializeComponent();
-        }
-       
+        }       
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
             //код
