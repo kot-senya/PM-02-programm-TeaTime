@@ -44,7 +44,7 @@ namespace teaTime
         }
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wMemberUserPrifile(member));
+
         }
         private void b_Click(object sender, RoutedEventArgs e)
         {

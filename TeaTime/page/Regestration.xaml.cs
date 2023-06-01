@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeaTime;
 
 namespace teaTime
 {
@@ -25,11 +26,8 @@ namespace teaTime
         {
             InitializeComponent();
         }
-        Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
-        Color Red = (Color)ColorConverter.ConvertFromString("#F1736F");
         public bool check()
         {
-
             try
             {
                 Regex checkName = new Regex(@"^[А-я ,.'-]+$");
@@ -39,57 +37,57 @@ namespace teaTime
 
                 if (checkName.IsMatch(aSurname.Text))
                 {
-                    eSurname.Fill = new SolidColorBrush(Green);
+                    eSurname.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    eSurname.Fill = new SolidColorBrush(Red);
+                    eSurname.Visibility = Visibility.Visible;
                     flag = false;
                 }
 
                 if (checkName.IsMatch(aName.Text))
                 {
-                    eName.Fill = new SolidColorBrush(Green);
+                    eName.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    eName.Fill = new SolidColorBrush(Red);
+                    eName.Visibility = Visibility.Visible;
                     flag = false;
                 }
                 if (checkName.IsMatch(aMiddleName.Text))
                 {
-                    eMiddleName.Fill = new SolidColorBrush(Green);
+                    eMiddleName.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    eMiddleName.Fill = new SolidColorBrush(Red);
+                    eMiddleName.Visibility = Visibility.Visible;
                     flag = false;
                 }
                 if (checkEmail.IsMatch(aEmail.Text))
                 {
-                    eEmail.Fill = new SolidColorBrush(Green);
+                    eEmail.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    eEmail.Fill = new SolidColorBrush(Red);
+                    eEmail.Visibility = Visibility.Visible;
                     flag = false;
                 }
                 if (checkNumberPhone.IsMatch(aPhoneNum.Text))
                 {
-                    ePhoneNumber.Fill = new SolidColorBrush(Green);
+                    ePhoneNumber.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    ePhoneNumber.Fill = new SolidColorBrush(Red);
+                    ePhoneNumber.Visibility = Visibility.Visible;
                     flag = false;
                 }
                 if (aPass.Password == arePass.Password && aPass.Password != "")
                 {
-                    ePass.Fill = new SolidColorBrush(Green);
+                    ePass.Visibility = Visibility.Hidden;
                 }
                 else
                 {
-                    ePass.Fill = new SolidColorBrush(Red);
+                    ePass.Visibility = Visibility.Visible;
                     flag = false;
                 }
                 return flag;
@@ -106,6 +104,22 @@ namespace teaTime
             //код
             if (check())
             {
+                List<Member> code = DataBaseConnect.DataBase.User.ToList();
+                var lastItem = code.Last();
+                User user = new User()
+                {
+                    ID_User = lastItem.ID_User + 1,
+                    Surname_User = txtSuName.Text,
+                    Name_User = txtName.Text,
+                    Login_User = txtLogin.Text,
+                    Password_User = txtPass.Password,
+                    Phone_User = txtPhon.Text,
+                    Address = txtAdres.Text,
+                    ID_Role = 2,
+                };
+                DataBase.BaseModel.User.Add(user);
+                DataBase.BaseModel.SaveChanges();
+                DataBase.BaseModel = new MFSystemEntities();
                 NavigationService.Navigate(new Authorization());
             }
             else

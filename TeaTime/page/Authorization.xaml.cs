@@ -30,7 +30,7 @@ namespace teaTime
         Member member = new Member();
         private void bAuth_Click(object sender, RoutedEventArgs e)
         {
-            if(checkWorker())
+            if(checkWorker(aLogin.Text, aPass.Password))
             {
                 NavigationService.Navigate(new wWorkerMain(worker));
             }
@@ -44,7 +44,7 @@ namespace teaTime
             }
             
         }
-        public bool checkWorker()
+        public bool checkWorker(string login, string password)
         {
             bool check = false;
             using(KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
@@ -52,7 +52,7 @@ namespace teaTime
                 List<Worker> w = DB.Worker.ToList();
                 for(int i = 0; i < w.Count; i++)
                 {
-                    if(w[i].login == aLogin.Text && w[i].password == aPass.Password)
+                    if(w[i].login == login && w[i].password == password)
                     {
                         check = true;
                         worker = w[i];
@@ -61,7 +61,7 @@ namespace teaTime
             }
             return check;
         }
-        public bool checkMember()
+        public bool checkMember(string login, string password)
         {
             bool check = false;
             using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
@@ -69,7 +69,7 @@ namespace teaTime
                 List<Member> m = DB.Member.ToList();
                 for (int i = 0; i < m.Count; i++)
                 {
-                    if (m[i].login == aLogin.Text && m[i].password == aPass.Password)
+                    if (m[i].login == login && m[i].password == password)
                     {
                         check = true;
                         member = m[i];
