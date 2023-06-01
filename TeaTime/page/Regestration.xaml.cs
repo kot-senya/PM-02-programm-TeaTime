@@ -26,83 +26,11 @@ namespace teaTime
         {
             InitializeComponent();
         }
-        public bool check()
-        {
-            try
-            {
-                Regex checkName = new Regex(@"^[А-я ,.'-]+$");
-                Regex checkEmail = new Regex(@"^\S+@\S+\.\S+$");
-                Regex checkNumberPhone = new Regex("^((\\+?7|8))\\d{10}$");
-                bool flag = true;
-
-                if (checkName.IsMatch(aSurname.Text))
-                {
-                    eSurname.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    eSurname.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-
-                if (checkName.IsMatch(aName.Text))
-                {
-                    eName.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    eName.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-                if (checkName.IsMatch(aMiddleName.Text))
-                {
-                    eMiddleName.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    eMiddleName.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-                if (checkEmail.IsMatch(aEmail.Text))
-                {
-                    eEmail.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    eEmail.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-                if (checkNumberPhone.IsMatch(aPhoneNum.Text))
-                {
-                    ePhoneNumber.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    ePhoneNumber.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-                if (aPass.Password == arePass.Password && aPass.Password != "")
-                {
-                    ePass.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    ePass.Visibility = Visibility.Visible;
-                    flag = false;
-                }
-                return flag;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-        }
+       
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
             //код
-            if (check())
+            if (Checks.check(this))
             {
                 try
                 {

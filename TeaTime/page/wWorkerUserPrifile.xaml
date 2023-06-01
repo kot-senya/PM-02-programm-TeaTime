@@ -124,33 +124,36 @@
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="aFio" Text="Фамилия имя отчество"  VerticalAlignment="Center"/>
-                                    <Image x:Name="aImageMenu" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0 10 0"/>
+                                    <Image Source="pack://application:,,,/pic/teaIcon.jpg" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0 10 0"/>
                                 </StackPanel>
                             </MenuItem.Header>
                         </MenuItem>
                     </Menu>
                 </Grid>
-                <Image x:Name="aImage" Width="125" Height="125" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45 75 0 0"/>
+                <Grid Width="130" Height="130"  Margin="45 75 0 0"  HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Rectangle RadiusX="10" RadiusY="10" Fill="white"/>
+                    <Image x:Name="aImage" Source="pack://application:,,,/pic/teaIcon.jpg" Width="125" Height="125"/>
+                </Grid>
                 <Grid Margin="220 0 0 0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal" Margin="0 80 0 0">
                         <TextBlock Text="ФИО" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 10 0 0" VerticalAlignment="Top" />
-                        <StackPanel Margin="55 5 0 0">
+                        <StackPanel Margin="55 10 0 0">
                             <TextBlock x:Name="aFIO"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" FontSize="12" Foreground="#A77748"/>
-                            <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                            <Line X1="0" Y1="-5" X2="260" Y2="-5" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 120 0 0">
                         <TextBlock Text="Телефон" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 10 0 0" VerticalAlignment="Top" />
-                        <StackPanel Margin="30 5 0 0">
+                        <StackPanel Margin="30 10 0 0">
                             <TextBlock x:Name="aPhoneNumber"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" FontSize="12" Foreground="#A77748"/>
-                            <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                            <Line X1="0" Y1="-5" X2="260" Y2="-5" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 160 0 0">
                         <TextBlock Text="Email" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 10 0 0" VerticalAlignment="Top" />
-                        <StackPanel Margin="50 5 0 0">
+                        <StackPanel Margin="50 10 0 0">
                             <TextBlock x:Name="aEmail"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" FontSize="12" Foreground="#A77748"/>
-                            <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                            <Line X1="0" Y1="-5" X2="260" Y2="-5" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -163,32 +166,18 @@
                             <Setter Property="ScrollViewer.Background" Value="#E8ECC8" />
                         </Style>
                     </Grid.Resources>
-                    <DataGrid x:Name="tInfo" CanUserAddRows="False" AutoGenerateColumns="False" CanUserSortColumns="True"
-                           Width="700" Height="170" Canvas.Top="510" Canvas.Left="40" ColumnHeaderHeight="25" 
-                           FontFamily="{StaticResource UniNeue-Bold}" Foreground="#A77748" FontSize="15"
-                           BorderBrush="#D3DB94" Background="#FAEDCD"                           
-                           RowBackground="#FAEDCD" AlternatingRowBackground="#FAEDCD" VerticalGridLinesBrush="#D3DB94"  
-                           HorizontalGridLinesBrush="#D3DB94"  
-                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="42,252,58,28"                            
-                           >
-                        <DataGrid.Resources>
-
-                        </DataGrid.Resources>
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="Background" Value="#D3DB94" />
-                                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path= Num}" IsReadOnly="True" FontSize="10" Header="" Width="30" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                            <DataGridTextColumn Binding="{Binding Path= Date}" IsReadOnly="True" FontSize="10" Header="Дата" Width="60" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                            <DataGridTextColumn Binding="{Binding Path= Time}" IsReadOnly="True" FontSize="10" Header="Время" Width="60" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                            <DataGridTextColumn Binding="{Binding Path= Name}" IsReadOnly="True" FontSize="10" Header="Название" Width="100" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                            <DataGridTextColumn Binding="{Binding Path= Theme}" IsReadOnly="True" FontSize="10" Header="Тема" Width="100" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                            <DataGridTextColumn Binding="{Binding Path= Descript}" IsReadOnly="True" FontSize="10" Header="Описание" Width="*" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                </Grid>
+                <Grid Margin="45,250,50,24">
+                    <ListBox x:Name="nameTea" BorderThickness="0" SelectionChanged="nameTea_SelectionChanged" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding num , Mode=TwoWay}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="10" Width="50"/>
+                                    <ComboBox ItemsSource="{Binding value}" Width="200" Background="White" Foreground="#A77748" HorizontalContentAlignment="Stretch" FontSize="10" SelectedValue="{Binding endTea}" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" ToolTip="Чай"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </Grid>
         </Border>

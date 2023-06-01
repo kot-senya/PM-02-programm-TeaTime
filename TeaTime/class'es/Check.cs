@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using teaTime;
 
 namespace TeaTime
 {
@@ -44,6 +47,70 @@ namespace TeaTime
             }
             return check;
         }
+        public static bool check(Regestration page)
+        {
+            Regex checkName = new Regex(@"^[А-я ,.'-]+$");
+            Regex checkEmail = new Regex(@"^\S+@\S+\.\S+$");
+            Regex checkNumberPhone = new Regex(@"^(8)\d{10}$");
+            bool flag = true;
+
+            if (checkName.IsMatch(page.aSurname.Text))
+            {
+                page.eSurname.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.eSurname.Visibility = Visibility.Visible;
+                flag = false;
+            }
+
+            if (checkName.IsMatch(page.aName.Text))
+            {
+                page.eName.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.eName.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            if (checkName.IsMatch(page.aMiddleName.Text))
+            {
+                page.eMiddleName.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.eMiddleName.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            if (checkEmail.IsMatch(page.aEmail.Text))
+            {
+                page.eEmail.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.eEmail.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            if (checkNumberPhone.IsMatch(page.aPhoneNum.Text))
+            {
+                page.ePhoneNumber.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.ePhoneNumber.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            if (page.aPass.Password == page.arePass.Password && page.aPass.Password != "" && page.aPass.Password.Length > 1)
+            {
+                page.ePass.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.ePass.Visibility = Visibility.Visible;
+                flag = false;
+            }
+            return flag;
+        }
     }
-    
+
 }

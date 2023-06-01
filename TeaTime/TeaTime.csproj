@@ -251,6 +251,9 @@
     </Content>
     <Content Include="pic\feather.png" />
     <Content Include="pic\home.png" />
+    <Content Include="pic\teaIcon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

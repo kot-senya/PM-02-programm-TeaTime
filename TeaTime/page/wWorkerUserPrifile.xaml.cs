@@ -27,6 +27,7 @@ namespace teaTime
             InitializeComponent();
             worker = user;
             aFio.Text = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
+            loadData();
         }
 
         private void btMain_Click(object sender, RoutedEventArgs e)
@@ -41,7 +42,9 @@ namespace teaTime
 
         private void loadData()
         {
-
+            aFIO.Text = worker.surname + " " + worker.name + " " + worker.middleName;
+            aPhoneNumber.Text = worker.phone;
+            aEmail.Text = worker.email;
         }
     }
 }
