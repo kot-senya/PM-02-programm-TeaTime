@@ -104,23 +104,30 @@ namespace teaTime
             //код
             if (check())
             {
-                List<Member> code = DataBaseConnect.DataBase.User.ToList();
-                var lastItem = code.Last();
-                User user = new User()
+                try
                 {
-                    ID_User = lastItem.ID_User + 1,
-                    Surname_User = txtSuName.Text,
-                    Name_User = txtName.Text,
-                    Login_User = txtLogin.Text,
-                    Password_User = txtPass.Password,
-                    Phone_User = txtPhon.Text,
-                    Address = txtAdres.Text,
-                    ID_Role = 2,
-                };
-                DataBase.BaseModel.User.Add(user);
-                DataBase.BaseModel.SaveChanges();
-                DataBase.BaseModel = new MFSystemEntities();
-                NavigationService.Navigate(new Authorization());
+                    List<Member> List = DataBaseConnect.DataBase.Member.ToList();
+                    var lastItem = List.Last();
+                    Member newUser = new Member()
+                    {
+                        surname = aSurname.Text,
+                        name = aName.Text,
+                        middleName = aMiddleName.Text,
+                        phone = aPhoneNum.Text,
+                        email = aEmail.Text,
+                        login = aLogin.Text,
+                        password = aPass.Password
+                    };
+                    DataBaseConnect.DataBase.Member.Add(newUser);
+                    DataBaseConnect.DataBase.SaveChanges();
+                    DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+                    NavigationService.Navigate(new Authorization());
+                }
+                catch
+                {
+                    MessageBox.Show("При регистрации возникли технические неполадки попробуйте еще раз");
+                }
+
             }
             else
             {
