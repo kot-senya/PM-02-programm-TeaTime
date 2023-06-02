@@ -64,10 +64,12 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid>
+    <Viewbox>
+        <Border>
+            <Grid>
         <TextBlock Text="Редактировать профиль" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="15 10 0 0"/>
         <Grid>
-            <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 0, 0, 10" Height="300" Width="750" BorderBrush="#D3DB94">
+            <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 0, 0, 10" Height="300" Width="370" BorderBrush="#D3DB94">
             <TabItem x:Name="tea" >
                 <TabItem.Header>
                     <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
@@ -138,4 +140,7 @@
         </Grid>
         <Button x:Name="bChange" Width="170" Height="35" Margin="315,387,315,28" Click="bChange_Click" Background="#FAEDCD" Content="Изменить" FontSize="20" Foreground="#A77748" FontFamily="{StaticResource GogoiaDeco}" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}"/>
     </Grid>
+        </Border>
+    </Viewbox>
+    
 </Page>
