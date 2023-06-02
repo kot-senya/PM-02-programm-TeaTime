@@ -67,11 +67,9 @@ namespace teaTime
         {
             InitializeComponent();
             dp.Text = data.ToString();
-            //выгрузка из бд
             worker = user;
             nameTeaLoaded(teaList);
         }
-
         private void nMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string hour = nHour.Text;
@@ -112,7 +110,7 @@ namespace teaTime
             {
                 using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
                 {
-                    teaList = Converter(DB.Tea.ToList());
+                    teaList = new ConverterBase().Converter(DB.Tea.ToList());
                     items.Add(new TeaTime() { num = items.Count + 1, value = teaList });
                     nameTea.ItemsSource = items;
                 }
@@ -121,48 +119,49 @@ namespace teaTime
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
-        public List<string> Converter(List<Tea> teas)
-        {
-            List<string> teaListNew = new List<string>();
-            for (int i = 0; i < teas.Count; i++)
-            {
-                teaListNew.Add(teas[i].name); ;
-            }
-            return teaListNew;
-        }
-
         private void nameTea_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             nameTeaLoaded(teaList);
             nameTea.ItemsSource = items;
         }
-
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerMain(worker));
         }
-
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
             //записьмероприятия в бд            
-
+            List<Event> List = DataBaseConnect.DataBase.Event.ToList();
+            List<ProgrammEvent> ListTea = DataBaseConnect.DataBase.ProgrammEvent.ToList();
+            var lastItem = List.Last();
+            Event newEvent = new Event()
+            {
+                idEvent = lastItem.idEvent + 1,
+                date = dp.DisplayDate,
+                name = aName.Text,
+                theme = aTheme.Text,
+                time = TimeSpan.Parse(aTime.Text),
+                idWorker = worker.idWorker,
+                description = aDescript.Text
+            };
             foreach (TeaTime a in nameTea.ItemsSource)//какой чай
             {
                 if (a.endTea != "")
                 {
-                    string b = a.endTea;
+                    ProgrammEvent newTea = new ProgrammEvent()
+                    {
+                        idEvent = newEvent.idEvent,
+                        idTea = new ConverterBase().Converter(DataBaseConnect.DataBase.Tea.ToList(), a.endTea)
+                    };
+                    DataBaseConnect.DataBase.ProgrammEvent.Add(newTea);
                 }
             }
+            DataBaseConnect.DataBase.Event.Add(newEvent);
+            DataBaseConnect.DataBase.SaveChanges();
+            DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
             NavigationService.Navigate(new wWorkerMain(worker));
         }
-
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void DatePicker_Initialized(object sender, EventArgs e)
         {
             dp.BlackoutDates.AddDatesInPast();

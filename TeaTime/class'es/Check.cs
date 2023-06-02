@@ -63,7 +63,6 @@ namespace TeaTime
                 page.eSurname.Visibility = Visibility.Visible;
                 flag = false;
             }
-
             if (checkName.IsMatch(page.aName.Text))
             {
                 page.eName.Visibility = Visibility.Hidden;

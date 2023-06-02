@@ -5,6 +5,28 @@ namespace TeaTime
 {
     public class ConverterBase
     {
+        public int Converter(List<Tea> tea, string teaName)
+        {
+            int num = 0;
+            for (int i = 0; i < tea.Count; i++)
+            {
+                if(tea[i].name == teaName)
+                {
+                    num = tea[i].idTea;
+                    break;
+                }
+            }
+            return num;
+        }
+        public List<string> Converter(List<Tea> teas)
+        {
+            List<string> teaListNew = new List<string>();
+            for (int i = 0; i < teas.Count; i++)
+            {
+                teaListNew.Add(teas[i].name); ;
+            }
+            return teaListNew;
+        }
         public List<DataTimeEvent> Converter(List<Event> List)
         {
             List<DataTimeEvent> dataTimeEvents = new List<DataTimeEvent>();
@@ -22,7 +44,6 @@ namespace TeaTime
             }
             return dataTimeEvents;
         }
-
         public List<DataTimeEvent> Converter(List<Event> List, DateTime date)
         {
             sort(List);

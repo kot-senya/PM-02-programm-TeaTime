@@ -144,7 +144,7 @@
                     <Grid>
                         <TextBlock Text="Дата" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="55,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.943" />
                         <TextBlock Text="Время" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="220,25,0,0" VerticalAlignment="Top" />
-                        <DatePicker x:Name="dp" Width="120" Height="45" FontSize="13" SelectedDateFormat="Short" Margin="90,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FAEDCD" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" BorderThickness="0" SelectedDateChanged="DatePicker_SelectedDateChanged" Initialized="DatePicker_Initialized"/>
+                        <DatePicker x:Name="dp" Width="120" Height="45" FontSize="13" SelectedDateFormat="Short" Margin="90,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FAEDCD" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" BorderThickness="0" Initialized="DatePicker_Initialized"/>
                         <Grid Width="125" Height="20" Margin="265 25 0 0" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="aTime" FontSize="13" IsReadOnly ="False"  Text="Выбор времени"  Width="95" BorderThickness="0" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" HorizontalContentAlignment="Stretch" />
