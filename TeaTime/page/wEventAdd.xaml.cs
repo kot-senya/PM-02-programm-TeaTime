@@ -22,45 +22,10 @@ namespace teaTime
     /// <summary>
     /// Логика взаимодействия для wEventAdd.xaml
     /// </summary>
-    public class TeaTime : INotifyPropertyChanged
-    {
-        private string _endTea = "";
-        private int _num;
-        public int num
-        {
-            get
-            {
-                return _num;
-            }
-            set
-            {
-                _num = value;
-                OnPropertyChanged("num");
-            }
-        }
-        public string endTea
-        {
-            get
-            {
-                return _endTea;
-            }
-            set
-            {
-                _endTea = value;
-            }
-        }
-        public List<string> value { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-    }
     public partial class wEventAdd : Page
     {
-        ObservableCollection<TeaTime> items = new ObservableCollection<TeaTime>();
+        ObservableCollection<TeaTimes> items = new ObservableCollection<TeaTimes>();
         List<string> teaList = new List<string>();
         Worker worker = new Worker();
         public wEventAdd(DateTime data, Worker user)
@@ -111,7 +76,7 @@ namespace teaTime
                 using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
                 {
                     teaList = new ConverterBase().Converter(DB.Tea.ToList());
-                    items.Add(new TeaTime() { num = items.Count + 1, value = teaList });
+                    items.Add(new TeaTimes() { num = items.Count + 1, value = teaList });
                     nameTea.ItemsSource = items;
                 }
             }
@@ -122,8 +87,21 @@ namespace teaTime
         }
         private void nameTea_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            nameTeaLoaded(teaList);
-            nameTea.ItemsSource = items;
+            bool flag = true;
+            foreach (TeaTimes a in nameTea.ItemsSource)//какой чай
+            {
+                if (a.endTea == "")
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                nameTeaLoaded(teaList);
+                nameTea.ItemsSource = items;
+            }
+
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
@@ -131,36 +109,45 @@ namespace teaTime
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
-            //записьмероприятия в бд            
-            List<Event> List = DataBaseConnect.DataBase.Event.ToList();
-            List<ProgrammEvent> ListTea = DataBaseConnect.DataBase.ProgrammEvent.ToList();
-            var lastItem = List.Last();
-            Event newEvent = new Event()
+            if (Checks.check(this))
             {
-                idEvent = lastItem.idEvent + 1,
-                date = dp.DisplayDate,
-                name = aName.Text,
-                theme = aTheme.Text,
-                time = TimeSpan.Parse(aTime.Text),
-                idWorker = worker.idWorker,
-                description = aDescript.Text
-            };
-            foreach (TeaTime a in nameTea.ItemsSource)//какой чай
-            {
-                if (a.endTea != "")
+                List<Event> List = DataBaseConnect.DataBase.Event.ToList();
+                List<ProgrammEvent> ListTea = DataBaseConnect.DataBase.ProgrammEvent.ToList();
+                var lastItem = List.Last();
+                Event newEvent = new Event()
                 {
-                    ProgrammEvent newTea = new ProgrammEvent()
+                    idEvent = lastItem.idEvent + 1,
+                    date = DateTime.Parse(dp.Text),
+                    name = aName.Text,
+                    theme = aTheme.Text,
+                    time = TimeSpan.Parse(aTime.Text),
+                    idWorker = worker.idWorker,
+                    description = aDescript.Text
+                };
+                DataBaseConnect.DataBase.Event.Add(newEvent);
+                foreach (TeaTimes a in nameTea.ItemsSource)//какой чай
+                {
+                    if (a.endTea != "")
                     {
-                        idEvent = newEvent.idEvent,
-                        idTea = new ConverterBase().Converter(DataBaseConnect.DataBase.Tea.ToList(), a.endTea)
-                    };
-                    DataBaseConnect.DataBase.ProgrammEvent.Add(newTea);
+                        var lastItem1 = ListTea.Last();
+                        ProgrammEvent newTea = new ProgrammEvent()
+                        {
+                            idPogrammEvent = 1,
+                            idEvent = newEvent.idEvent,
+                            idTea = new ConverterBase().Converter(DataBaseConnect.DataBase.Tea.ToList(), a.endTea)
+                        };
+                        DataBaseConnect.DataBase.ProgrammEvent.Add(newTea);
+                        DataBaseConnect.DataBase.SaveChanges();
+                    }
                 }
+                DataBaseConnect.DataBase.SaveChanges();
+                DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+                NavigationService.Navigate(new wWorkerMain(worker));
             }
-            DataBaseConnect.DataBase.Event.Add(newEvent);
-            DataBaseConnect.DataBase.SaveChanges();
-            DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
-            NavigationService.Navigate(new wWorkerMain(worker));
+            else
+            {
+                MessageBox.Show("Не все поля были заполнены. Аерепроверьте введенные данные и повторите ввод.");
+            }
         }
         private void DatePicker_Initialized(object sender, EventArgs e)
         {

@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d17f40afbf9042539e413709c96923cb" Name="Diagram1">
+      <Diagram DiagramId="c58a526028eb4d3692000b313fc42fca" Name="Diagram1">
         <EntityTypeShape EntityType="KotkovaISazonovaModel.Event" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="KotkovaISazonovaModel.Member" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="KotkovaISazonovaModel.Record" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KotkovaISazonovaModel.Member" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KotkovaISazonovaModel.ProgrammEvent" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KotkovaISazonovaModel.Record" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KotkovaISazonovaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KotkovaISazonovaModel.Tea" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KotkovaISazonovaModel.Tea" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="KotkovaISazonovaModel.Worker" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KotkovaISazonovaModel.ProgrammEvent" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KotkovaISazonovaModel.goPhoto" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="KotkovaISazonovaModel.PertyTea" Width="1.5" PointX="7.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="KotkovaISazonovaModel.FK_Event_Worker" ManuallyRouted="false" />

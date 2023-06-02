@@ -29,11 +29,11 @@ namespace TeaTime
     
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<Member> Member { get; set; }
+        public virtual DbSet<ProgrammEvent> ProgrammEvent { get; set; }
         public virtual DbSet<Record> Record { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tea> Tea { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
-        public virtual DbSet<ProgrammEvent> ProgrammEvent { get; set; }
         public virtual DbSet<goPhoto> goPhoto { get; set; }
         public virtual DbSet<PertyTea> PertyTea { get; set; }
     
