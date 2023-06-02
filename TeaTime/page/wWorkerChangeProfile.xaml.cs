@@ -26,10 +26,26 @@ namespace teaTime
         {
             InitializeComponent();
             this.worker = user;
+            loadData(); 
+        }
+        private void loadData()
+        {
+            aSurname.Text = worker.surname;
+            aName.Text = worker.name;
+            aMiddleName.Text = worker.middleName;
+            aPhoneNum.Text = worker.phone;
+            aEmail.Text = worker.email;
+            aLogin.Text = worker.login;
+            aPass.Password = worker.password;
         }
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerUserPrifile(worker));
+        }
+
+        private void aPass_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
     }
 }
