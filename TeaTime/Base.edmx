@@ -31,13 +31,9 @@
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="photo" Type="bit" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "KotkovaISazonova.dbo.ProgrammEvent" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="ProgrammEvent">
           <Key>
             <PropertyRef Name="idPogrammEvent" />
-            <PropertyRef Name="idEvent" />
-            <PropertyRef Name="idTea" />
           </Key>
           <Property Name="idPogrammEvent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idEvent" Type="int" Nullable="false" />
@@ -201,17 +197,11 @@
         <EntityContainer Name="Хранилище KotkovaISazonovaModelContainer">
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgrammEvent" EntityType="Self.ProgrammEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tea" EntityType="Self.Tea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProgrammEvent" EntityType="Self.ProgrammEvent" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProgrammEvent].[idPogrammEvent] AS [idPogrammEvent], 
-    [ProgrammEvent].[idEvent] AS [idEvent], 
-    [ProgrammEvent].[idTea] AS [idTea]
-    FROM [dbo].[ProgrammEvent] AS [ProgrammEvent]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="goPhoto" EntityType="Self.goPhoto" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [goPhoto].[Date] AS [Date], 
@@ -282,6 +272,16 @@
           <Property Name="photo" Type="Boolean" />
           <NavigationProperty Name="Record" Relationship="Self.FK_Record_Member" FromRole="Member" ToRole="Record" />
         </EntityType>
+        <EntityType Name="ProgrammEvent">
+          <Key>
+            <PropertyRef Name="idPogrammEvent" />
+          </Key>
+          <Property Name="idPogrammEvent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvent" Type="Int32" Nullable="false" />
+          <Property Name="idTea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_ProgrammEvent_Event" FromRole="ProgrammEvent" ToRole="Event" />
+          <NavigationProperty Name="Tea" Relationship="Self.FK_ProgrammEvent_Tea" FromRole="ProgrammEvent" ToRole="Tea" />
+        </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="idRecord" />
@@ -325,18 +325,6 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Event_Worker" FromRole="Worker" ToRole="Event" />
-        </EntityType>
-        <EntityType Name="ProgrammEvent">
-          <Key>
-            <PropertyRef Name="idPogrammEvent" />
-            <PropertyRef Name="idEvent" />
-            <PropertyRef Name="idTea" />
-          </Key>
-          <Property Name="idPogrammEvent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idEvent" Type="Int32" Nullable="false" />
-          <Property Name="idTea" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Event" Relationship="Self.FK_ProgrammEvent_Event" FromRole="ProgrammEvent" ToRole="Event" />
-          <NavigationProperty Name="Tea" Relationship="Self.FK_ProgrammEvent_Tea" FromRole="ProgrammEvent" ToRole="Tea" />
         </EntityType>
         <EntityType Name="goPhoto">
           <Key>
@@ -421,11 +409,11 @@
         <EntityContainer Name="KotkovaISazonovaEntities_" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Event" EntityType="Self.Event" />
           <EntitySet Name="Member" EntityType="Self.Member" />
+          <EntitySet Name="ProgrammEvent" EntityType="Self.ProgrammEvent" />
           <EntitySet Name="Record" EntityType="Self.Record" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tea" EntityType="Self.Tea" />
           <EntitySet Name="Worker" EntityType="Self.Worker" />
-          <EntitySet Name="ProgrammEvent" EntityType="Self.ProgrammEvent" />
           <EntitySet Name="goPhoto" EntityType="Self.goPhoto" />
           <EntitySet Name="PertyTea" EntityType="Self.PertyTea" />
           <AssociationSet Name="FK_Event_Worker" Association="Self.FK_Event_Worker">
@@ -524,6 +512,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProgrammEvent">
+            <EntityTypeMapping TypeName="KotkovaISazonovaModel.ProgrammEvent">
+              <MappingFragment StoreEntitySet="ProgrammEvent">
+                <ScalarProperty Name="idPogrammEvent" ColumnName="idPogrammEvent" />
+                <ScalarProperty Name="idEvent" ColumnName="idEvent" />
+                <ScalarProperty Name="idTea" ColumnName="idTea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Record">
             <EntityTypeMapping TypeName="KotkovaISazonovaModel.Record">
               <MappingFragment StoreEntitySet="Record">
@@ -565,15 +562,6 @@
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="photo" ColumnName="photo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProgrammEvent">
-            <EntityTypeMapping TypeName="KotkovaISazonovaModel.ProgrammEvent">
-              <MappingFragment StoreEntitySet="ProgrammEvent">
-                <ScalarProperty Name="idPogrammEvent" ColumnName="idPogrammEvent" />
-                <ScalarProperty Name="idEvent" ColumnName="idEvent" />
-                <ScalarProperty Name="idTea" ColumnName="idTea" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

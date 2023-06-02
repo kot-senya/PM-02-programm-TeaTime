@@ -110,6 +110,33 @@ namespace TeaTime
             }
             return flag;
         }
+        public static bool check(wEventAdd page)
+        {
+            try
+            {
+                Regex checkTime = new Regex(@"^\d\d(:)\d{1,2}$");
+                int tea = 0;
+                foreach (TeaTimes a in page.nameTea.ItemsSource)//какой чай
+                {
+                    if (a.endTea != "")
+                    {
+                        tea++;
+                    }
+                }
+                bool flag = true;
+                if (!checkTime.IsMatch(page.aTime.Text) || page.aName.Text == "" || page.aTheme.Text == "" || page.aDescript.Text == "" || tea < 1)
+                {
+                    flag = false;
+                }
+                return flag;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
     }
 
 }
