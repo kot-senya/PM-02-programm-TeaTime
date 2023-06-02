@@ -25,7 +25,7 @@ namespace teaTime
         public wWorkerChangeProfile(Worker user)
         {
             InitializeComponent();
-            this.worker = user;
+            worker = user;
             loadData(); 
         }
         private void loadData()
