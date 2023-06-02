@@ -25,11 +25,9 @@ namespace teaTime
         public Regestration()
         {
             InitializeComponent();
-        }
-       
+        }       
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
-            //код
             if (Checks.check(this))
             {
                 try
@@ -55,7 +53,6 @@ namespace teaTime
                 {
                     MessageBox.Show("При регистрации возникли технические неполадки попробуйте еще раз");
                 }
-
             }
             else
             {
@@ -63,7 +60,6 @@ namespace teaTime
             }
 
         }
-
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Authorization());

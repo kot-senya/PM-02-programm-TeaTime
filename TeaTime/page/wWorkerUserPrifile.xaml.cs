@@ -27,7 +27,7 @@ namespace teaTime
         {
             InitializeComponent();
             worker = user;
-            aFio.Text = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
+            btUser.Header = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
             loadData();
         }
 
@@ -35,7 +35,6 @@ namespace teaTime
         {
             NavigationService.Navigate(new wWorkerMain(worker));
         }
-
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerChangeProfile(worker));
@@ -47,15 +46,20 @@ namespace teaTime
             aPhoneNumber.Text = worker.phone;
             aEmail.Text = worker.email;
         }
-        ObservableCollection<TeaTime> items = new ObservableCollection<TeaTime>();
-        private void eventClose_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void eventClose_Initialized(object sender, EventArgs e)
         {
             try
             {
                 using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
                 {
-                    items.Add(new TeaTime() { num = items.Count + 1, value = teaList });
-                    eventClose.ItemsSource = items;
+                    ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
+                    List<DataTimeEvent> alllEvent = new ConverterBase().Converter(DB.Event.ToList(),DateTime.Now);
+                    foreach (DataTimeEvent a in alllEvent)
+                    {
+                        needEvent.Add(a);
+                    }
+                    eventClose.ItemsSource = needEvent;
                 }
             }
             catch (Exception ex)

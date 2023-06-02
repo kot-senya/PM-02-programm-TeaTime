@@ -22,19 +22,16 @@ namespace teaTime
     /// </summary>    
     public partial class Authorization : Page
     {
+        Worker worker = new Worker();
+        Member member = new Member();
         public Authorization()
         {
             InitializeComponent();
-        }
-
-        Worker worker = new Worker();
-        Member member = new Member();
-
+        }  
         private void bAuth_Click(object sender, RoutedEventArgs e)
         {
             if(Checks.checkWorker(aLogin.Text, aPass.Password, out worker))
-            {
-               
+            {               
                 NavigationService.Navigate(new wWorkerMain(worker));
             }
             else if (Checks.checkMember(aLogin.Text, aPass.Password, out member))

@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using teaTime.class_es;
 using TeaTime;
 
 
@@ -25,12 +24,16 @@ namespace teaTime
     /// </summary>
     public partial class wWorkerMain : Page
     {
+
+        Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
+        Color Yellow = (Color)ColorConverter.ConvertFromString("#FAEDCD");
+        Color Brown = (Color)ColorConverter.ConvertFromString("#A77748");
         Worker worker = new Worker();
         public wWorkerMain(Worker user)
         {
             InitializeComponent();
             worker = user;
-            aFio.Text = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
+            btUser.Header = worker.surname + " " + worker.name[0] + "." + worker.middleName[0] + ".";
             loadedCalendar();
             loadedData();
             loadedColorData();
@@ -59,7 +62,7 @@ namespace teaTime
         {
             Button bt = (Button)sender;
             string day = bt.Content.ToString();
-            int monthN = giveMonthNum(aMonth.Text.Split(' ')[0]);
+            int monthN = timeData.giveMonthNum(aMonth.Text.Split(' ')[0]);
             string month;
             if (int.Parse(day) < 10)
             {
@@ -80,7 +83,7 @@ namespace teaTime
         {
             string dateNow = DateTime.Now.ToString(); //получение сегодняшней даты
             string yearNow = (dateNow.Split(' ')[0]).Split('.')[2];
-            aMonth.Text = giveMonthName(int.Parse(dateNow.Split('.')[1])) + yearNow;
+            aMonth.Text = timeData.giveMonthName(int.Parse(dateNow.Split('.')[1])) + yearNow;
             int countDay = DateTime.DaysInMonth(int.Parse(yearNow), int.Parse(dateNow.Split('.')[1])); // количество дней в месяце
             int day = (int)DateTime.Parse("01." + (dateNow.Split('.')[1]) + "." + yearNow).DayOfWeek;
             if (day == 0)
@@ -94,7 +97,7 @@ namespace teaTime
         {
             string month = aMonth.Text.Split(' ')[0];
             int year = int.Parse(aMonth.Text.Split(' ')[1]);
-            int numMonth = giveMonthNum(month);
+            int numMonth = timeData.giveMonthNum(month);
             if (numMonth == 12)
             {
                 year++;
@@ -104,7 +107,7 @@ namespace teaTime
             {
                 numMonth++;
             }
-            aMonth.Text = giveMonthName(numMonth) + year;
+            aMonth.Text = timeData.giveMonthName(numMonth) + year;
             nullValueButton();
             int countDay = DateTime.DaysInMonth(year, numMonth); // количество дней в месяце
             int day = (int)DateTime.Parse("01." + numMonth + "." + year).DayOfWeek;
@@ -120,7 +123,7 @@ namespace teaTime
         {
             string month = aMonth.Text.Split(' ')[0];
             int year = int.Parse(aMonth.Text.Split(' ')[1]);
-            int numMonth = giveMonthNum(month);
+            int numMonth = timeData.giveMonthNum(month);
             if (numMonth == 1)
             {
                 year--;
@@ -130,7 +133,7 @@ namespace teaTime
             {
                 numMonth--;
             }
-            aMonth.Text = giveMonthName(numMonth) + year;
+            aMonth.Text = timeData.giveMonthName(numMonth) + year;
             nullValueButton();
             int countDay = DateTime.DaysInMonth(year, numMonth); // количество дней в месяце
             int day = (int)DateTime.Parse("01." + numMonth + "." + year).DayOfWeek;
@@ -203,118 +206,22 @@ namespace teaTime
                 bt.Visibility = Visibility.Hidden;
             }
         }
-        private string giveMonthName(int num)
-        {
-            string nameMonth = "";
-            switch (num) //выбор месяца
-            {
-                case (1):
-                    nameMonth = "Январь ";
-                    break;
-                case (2):
-                    nameMonth = "Февраль ";
-                    break;
-                case (3):
-                    nameMonth = "Март ";
-                    break;
-                case (4):
-                    nameMonth = "Апрель ";
-                    break;
-                case (5):
-                    nameMonth = "Май ";
-                    break;
-                case (6):
-                    nameMonth = "Июнь ";
-                    break;
-                case (7):
-                    nameMonth = "Июль ";
-                    break;
-                case (8):
-                    nameMonth = "Август ";
-                    break;
-                case (9):
-                    nameMonth = "Сентябрь ";
-                    break;
-                case (10):
-                    nameMonth = "Октябрь ";
-                    break;
-                case (11):
-                    nameMonth = "Ноябрь ";
-                    break;
-                case (12):
-                    nameMonth = "Декабрь ";
-                    break;
-            }
-            return nameMonth;
-        }
-        private int giveMonthNum(string name)
-        {
-            switch (name)
-            {
-                case ("Январь"):
-                    return 1;
-                case ("Февраль"):
-                    return 2;
-                case ("Март"):
-                    return 3;
-                case ("Апрель"):
-                    return 4;
-                case ("Май"):
-                    return 5;
-                case ("Июнь"):
-                    return 6;
-                case ("Июль"):
-                    return 7;
-                case ("Август"):
-                    return 8;
-                case ("Сентябрь"):
-                    return 9;
-                case ("Октябрь"):
-                    return 10;
-                case ("Ноябрь"):
-                    return 11;
-                case ("Декабрь"):
-                    return 12;
-                default:
-                    return 0;
-            }
-        }
+
         List<DataTimeEvent> dataTime = new List<DataTimeEvent>();
         private void loadedData()
         {
             //цикл с загрузкой даты и ее описания
             using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
             {
-                dataTime = Converter(DB.Event.ToList());
+                dataTime = new ConverterBase().Converter(DB.Event.ToList());
             }
         }
-        public List<DataTimeEvent> Converter(List<Event> List)
-        {
-            List<DataTimeEvent> dataTimeEvents = new List<DataTimeEvent>();
-            for (int i = 0; i < List.Count; i++)
-            {
-                dataTimeEvents.Add(new DataTimeEvent
-                {
-                    Data = Convert.ToString(List[i].date).Split(' ')[0],
-                    Time = Convert.ToString(List[i].time).Split(':')[0] + ":" + Convert.ToString(List[i].time).Split(':')[1],
-                    Name = List[i].name,
-                    Description = List[i].description,
-                    Theme = List[i].theme
-                });
-            }
-            return dataTimeEvents;
-        }
-
-        Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
-        Color Yellow = (Color)ColorConverter.ConvertFromString("#FAEDCD");
-        Color Brown = (Color)ColorConverter.ConvertFromString("#A77748");
-
         private void loadedColorData()
         {
             foreach (DataTimeEvent date in dataTime)
             {
                 //string[] line = date.Data.Split('.');
-                if (aMonth.Text == giveMonthName(int.Parse(date.Data.Split('.')[1])) + date.Data.Split('.')[2])
+                if (aMonth.Text == timeData.giveMonthName(int.Parse(date.Data.Split('.')[1])) + date.Data.Split('.')[2])
                 {
                     for (int i = 1; i < 8; i++)
                     {

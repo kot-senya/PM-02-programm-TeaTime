@@ -117,14 +117,7 @@
                         </Menu.Resources>
                         <MenuItem x:Name="btMain" Header="Главная" Height="30" Width="70" Background="#D3DB94" Template="{DynamicResource MenuMainItem}"></MenuItem>
                         <MenuItem Header="" IsEnabled="False" Width="524"></MenuItem>
-                        <MenuItem x:Name="btUser" Click="bUserProfile_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Width="205.5" Template="{DynamicResource MenuMainItem}">
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="aFio" Text="Фамилия имя отчество" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <Image x:Name="aImage" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0 10 0"/>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
+                        <MenuItem x:Name="btUser" Click="bUserProfile_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="30" Width="205.5" Background="#FAEDCD" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748" Template="{DynamicResource MenuMainItem}"/>
                     </Menu>
                 </Grid>
                 <Grid Height="250" Width="250" Margin="431,100,119,100">

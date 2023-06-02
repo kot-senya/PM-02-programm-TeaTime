@@ -17,7 +17,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 //using System.Windows.Xps.Serialization;
 using System.Xml.Linq;
-using teaTime.class_es;
 using System.ComponentModel;
 using TeaTime;
 

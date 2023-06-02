@@ -80,8 +80,10 @@
       <DependentUpon>Base.edmx</DependentUpon>
     </Compile>
     <Compile Include="class%27es\Check.cs" />
+    <Compile Include="class%27es\ConverterBase.cs" />
     <Compile Include="class%27es\DataBaseConnect.cs" />
     <Compile Include="class%27es\DataTimeEvent.cs" />
+    <Compile Include="class%27es\timeData.cs" />
     <Compile Include="Event.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>

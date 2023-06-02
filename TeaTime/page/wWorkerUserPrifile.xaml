@@ -143,14 +143,7 @@
                     <Menu Height="30" Width="Auto" VerticalAlignment="Center" Background="#FAEDCD" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748">
                         <MenuItem x:Name="btMain" Click="btMain_Click" Header="Главная" Height="28" Width="70" Template="{DynamicResource MenuMainItem}"/>
                         <MenuItem Header="" IsEnabled="False" Width="524" ></MenuItem>
-                        <MenuItem x:Name="btUser" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="30" Width="205.5" Background="#D3DB94" Template="{DynamicResource MenuMainItem}">
-                            <MenuItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="aFio" Text="Фамилия имя отчество"  VerticalAlignment="Center"/>
-                                    <Image Source="pack://application:,,,/pic/teaIcon.jpg" Width="25" Height="25" HorizontalAlignment="Right" Margin="10 0 10 0"/>
-                                </StackPanel>
-                            </MenuItem.Header>
-                        </MenuItem>
+                        <MenuItem x:Name="btUser" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="30" Width="205.5" Background="#D3DB94" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748" Template="{DynamicResource MenuMainItem}"/>
                     </Menu>
                 </Grid>
                 <Grid Width="130" Height="130"  Margin="45 75 0 0"  HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -190,24 +183,25 @@
                         </Style>
                     </Grid.Resources>
                 </Grid>
-                <Grid Margin="45,250,50,24">
-                    <ListBox x:Name="eventClose" BorderThickness="0" SelectionChanged="eventClose_SelectionChanged" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
+                <Grid Margin="45,240,50,20">
+                    <ListBox x:Name="eventClose" BorderThickness="0"   Initialized="eventClose_Initialized" ItemContainerStyle="{DynamicResource SimpleListBoxItem}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Viewbox Width="100" Height="100">
-                                    <Grid>
-                                        <Rectangle RadiusX="10" RadiusY="10" Fill="#D3DB94"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Name="aData" Text="" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Center" Margin="0,29,0,-24" Foreground="#A77748"/>
-                                            <TextBlock x:Name="aName0" Text="Название:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,54,0,-14" Foreground="#A77748"/>
-                                            <TextBlock x:Name="aName" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,54,0,166" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-                                            <TextBlock x:Name="aTheme0" Text="Тема:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="11,90,0,-20" Foreground="#A77748"/>
-                                            <TextBlock x:Name="aTheme" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75,95,0,125" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-                                            <TextBlock x:Name="aDescript0" Text="Описание:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10,138,0,-38" Foreground="#A77748"/>
-                                            <TextBlock x:Name="aDescript" Text="" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="75 125 0 0" Foreground="#A77748" Height="100" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-                                        </StackPanel>                                        
-                                    </Grid>
-                                </Viewbox>
+                                <Grid Width="222" Height="177">
+                                    <Rectangle RadiusX="10" RadiusY="10" Fill="#D3DB94"/>
+                                    <TextBlock Text="{Binding Data}" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="#A77748"/>
+                                    <TextBlock Text="Название:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10 30 0 0" Foreground="#A77748"/>
+                                    <TextBlock Text="{Binding Name}" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="60 -85 0 0" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="Тема:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10 70 0 0" Foreground="#A77748"/>
+                                    <TextBlock Text="{Binding Theme}" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="60 -5 0 0" Foreground="#A77748" Height="30" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="Описание:" FontFamily="{StaticResource GogoiaDeco}" FontSize="15" HorizontalAlignment="Left" Margin="10 100 0 0" Foreground="#A77748"/>
+                                    <TextBlock Text="{Binding Description}" FontFamily="{StaticResource UniNeue-Regular}" FontSize="10" HorizontalAlignment="Left" Margin="60 95 0 0" Foreground="#A77748" Height="70" Width="150" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
