@@ -40,12 +40,13 @@ namespace teaTime
         }
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
+            //rjl
             NavigationService.Navigate(new wWorkerUserPrifile(worker));
         }
 
-        private void aPass_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService.Navigate(new wWorkerUserPrifile(worker));
         }
     }
 }
