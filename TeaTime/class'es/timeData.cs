@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeaTime
 {
-    public class timeData
+    internal class timeData
     {
         public static string giveMonthName(int num)
         {
