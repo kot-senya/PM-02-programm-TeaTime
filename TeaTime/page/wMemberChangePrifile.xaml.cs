@@ -103,6 +103,11 @@ namespace teaTime
                             newMember.login = aLogin.Text;
                             MessageBox.Show("Логин был изменен");
                         }
+                        else
+                        {
+                            MessageBox.Show("Такой логин уже существует");
+                            aLogin.Text = member.login;
+                        }
                         aLogin.IsReadOnly = true;
                     }
                     break;

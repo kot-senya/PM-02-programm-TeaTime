@@ -97,6 +97,12 @@
     <Compile Include="newPage\memberEvent.xaml.cs">
       <DependentUpon>memberEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="newPage\workerAddWorker.xaml.cs">
+      <DependentUpon>workerAddWorker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="newPage\workerChengeEvent.xaml.cs">
+      <DependentUpon>workerChengeEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -164,6 +170,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="newPage\memberEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="newPage\workerAddWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="newPage\workerChengeEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

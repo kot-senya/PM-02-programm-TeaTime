@@ -345,5 +345,19 @@ namespace teaTime
             bRead.Visibility = Visibility.Hidden;
         }
 
+        private void btTea_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btWork_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btEv_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
