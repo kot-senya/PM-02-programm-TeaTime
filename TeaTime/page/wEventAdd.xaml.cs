@@ -137,11 +137,12 @@ namespace teaTime
                 {
                     if (a.endTea != "")
                     {
+                        List<Tea> t = DataBaseConnect.DataBase.Tea.ToList().Where(tb => tb.name == a.endTea).ToList();
                         ProgrammEvent newTea = new ProgrammEvent()//запись нового чая
                         {
                             idPogrammEvent = 1,
                             idEvent = newEvent.idEvent,
-                            idTea = new ConverterBase().Converter(DataBaseConnect.DataBase.Tea.ToList(), a.endTea)
+                            idTea = t[0].idTea
                         };
                         DataBaseConnect.DataBase.ProgrammEvent.Add(newTea);
                         DataBaseConnect.DataBase.SaveChanges();

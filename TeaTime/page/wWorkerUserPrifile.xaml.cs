@@ -51,16 +51,22 @@ namespace teaTime
         {
             try
             {
-                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+                List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
+                List<Event> allEvent = ev.Where(tb => tb.date > DateTime.Now).OrderBy(tb => tb.date).ToList();
+                ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
+                for (int i = 0; i < allEvent.Count; i++)
                 {
-                    ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
-                    List<DataTimeEvent> alllEvent = new ConverterBase().Converter(DB.Event.ToList(),DateTime.Now);
-                    foreach (DataTimeEvent a in alllEvent)
+                    DataTimeEvent a = new DataTimeEvent()
                     {
-                        needEvent.Add(a);
-                    }
-                    eventClose.ItemsSource = needEvent;
+                        Data = Convert.ToString(allEvent[i].date).Split(' ')[0],
+                        Name = allEvent[i].name,
+                        Theme = allEvent[i].theme,
+                        Description = allEvent[i].description
+                    };
+                    needEvent.Add(a);
+
                 }
+                eventClose.ItemsSource = needEvent;
             }
             catch (Exception ex)
             {

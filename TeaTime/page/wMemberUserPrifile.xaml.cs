@@ -26,8 +26,7 @@ namespace teaTime
         {
             this.member = user;
             InitializeComponent();
-
-            loadData();
+            loadData();//загрузка данных о пользователе
         }
         private void loadData()
         {
@@ -43,20 +42,34 @@ namespace teaTime
         {
             NavigationService.Navigate(new wMemberMain(member));
         }
+
         private void eventClose_Initialized(object sender, EventArgs e)
         {
             try
             {
-                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+                List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
+                List<Record> r = DataBaseConnect.DataBase.Record.ToList().Where(tb => tb.idMember == member.idMember).ToList();//мероприятия на которые записан
+                List<Event> allEvent = ev.Where(tb => tb.date > DateTime.Now).OrderBy(tb => tb.date).ToList();
+                ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
+                for (int i = 0; i < allEvent.Count; i++)
                 {
-                    ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
-                    List<DataTimeEvent> allEvent = new ConverterBase().Converter(DB.Event.ToList(), DateTime.Now, ref member);
-                    foreach (DataTimeEvent a in allEvent)
+                    for (int j = 0; j < r.Count; j++)
                     {
-                        needEvent.Add(a);
+                        if (r[j].idEvent == allEvent[i].idEvent)
+                        {
+                            DataTimeEvent a = new DataTimeEvent()
+                            {
+                                Data = Convert.ToString(allEvent[i].date).Split(' ')[0],
+                                Name = allEvent[i].name,
+                                Theme = allEvent[i].theme,
+                                Description = allEvent[i].description
+                            };
+                            needEvent.Add(a);
+                        }
                     }
-                    eventClose.ItemsSource = needEvent;
                 }
+                eventClose.ItemsSource = needEvent;
+
             }
             catch (Exception ex)
             {

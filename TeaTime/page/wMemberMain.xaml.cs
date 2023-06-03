@@ -333,7 +333,8 @@ namespace teaTime
                 if (Convert.ToString(data.date).Split(' ')[0] == dateHeader)
                 {
                     //присвоение значений описанию
-                    header += " в " + data.time;
+                    string time = Convert.ToString(data.time);
+                    header += " в " + time.Split(':')[0] + ":" + time.Split(':')[1];
                     aData.Text = header;
                     aName.Text = data.name;
                     aDescript.Text = data.description;
