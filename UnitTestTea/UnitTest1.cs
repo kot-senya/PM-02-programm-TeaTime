@@ -35,7 +35,35 @@ namespace teaTime
         {
             Member member = new Member();
             Assert.IsTrue(Checks.checkMember("nihdsu78", "xopdytj", out member)); // юнит тест который при неправильных значениях в поле для авторизации пользователя выведет результатом теста которого будет являться "false"
-        }        
-    }
+        }
+        [TestMethod]
+        public void TestTIMEDATAQ()
+        {
+            string nameMonth = "Январь";
+            int numMonth = 1;
+            Assert.AreEqual(nameMonth, timeData.giveMonthName(numMonth).Trim());
+        }
+        [TestMethod]
+        public void TestNOtIMEDATAQ()
+        {
+            string nameMonth = "Июнь";
+            int numMonth = 11;
+            Assert.AreEqual(nameMonth, timeData.giveMonthName(numMonth).Trim());
+        }
+        [TestMethod]
+        public void TestThereIsNoOneInAuthorizationWorker()
+        {
+            Worker worker = new Worker();
+            Assert.IsTrue(Checks.checkWorker("", "", out worker));
+        }
+        [TestMethod]
+        public void TestThereIsNoOneInAuthorizationMember()
 
+        {
+            Member member = new Member();
+            Assert.IsTrue(Checks.checkMember("", "", out member));
+
+        }
+    }
 }
+
