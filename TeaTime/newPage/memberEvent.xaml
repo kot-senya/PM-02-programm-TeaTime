@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeaTime"
         mc:Ignorable="d"
-        Title=" " MinHeight="450" MinWidth="450"
+        Title=" " MinHeight="450" MinWidth="450" Height="450" Width="450"
         Icon="pack://application:,,,/pic/icon.png">
     <Window.Resources>
         <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}">
