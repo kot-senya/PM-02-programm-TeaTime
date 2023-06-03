@@ -27,36 +27,102 @@ namespace teaTime
         Color Green = (Color)ColorConverter.ConvertFromString("#D3DB94");
         Color Yellow = (Color)ColorConverter.ConvertFromString("#FAEDCD");
         Color Brown = (Color)ColorConverter.ConvertFromString("#A77748");
+        List<Event> dataTime = new List<Event>();
         Member member = new Member();
         public wMemberMain(Member user)
         {
-            InitializeComponent();
+            //получение данных о пользователе
             member = user;
+            //инициализация компонентов страницы
+            InitializeComponent();
+            //присваивание значения Фамилии и инициалов Пользователя
             bUserProfile.Content = member.surname + " " + member.name[0] + "." + member.middleName[0] + ".";
+            //Загрузка дат календаря
             loadedCalendar();
+            //Загрузка дат, в которые проводятся события
             loadedData();
+            //Раскрасить даты в кадендаре, в которые проводятся мероприятия
             loadedColorData();
-            changeEventDescription(DateTime.Now.ToString().Split(':')[0]);
+            //Изменения данных о мероприятии, которое проводится Сеодня
+            changeEventDescription(DateTime.Now.ToString().Split(' ')[0]);
         }
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
+            //Нажатие на кнопку открывает страницу Профиля пользователя
             NavigationService.Navigate(new wMemberUserPrifile(member));
+        }
+
+        private void bDel_Click(object sender, RoutedEventArgs e)
+        {
+            //нахождение мероприятия по дате
+            List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
+            DateTime dateEvent;
+            if (aMonth.Text.Split(' ')[1] != "Сегодня")//инициализация даты
+            {
+                dateEvent = DateTime.Parse(aData.Text.Split(' ')[0]);
+            }
+            else
+            {
+                dateEvent = DateTime.Now;
+            }
+            List<Event> events = ev.Where(tb => tb.date == dateEvent).ToList();//нужное мероприятие
+            List<Record> records = DataBaseConnect.DataBase.Record.ToList();
+            List<Record> r = records.Where(tb => tb.idEvent == events[0].idEvent && tb.idMember == member.idMember).ToList();//запись на это меро
+            DataBaseConnect.DataBase.Record.Remove(r[0]);
+            DataBaseConnect.DataBase.SaveChanges();
+            DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+            bReg.Visibility = Visibility.Visible;
+            bDel.Visibility = Visibility.Hidden;
         }
         private void bReg_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                //нахождение мероприятия по дате
+                List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
+                DateTime dateEvent;
+                if (aMonth.Text.Split(' ')[1] != "Сегодня")//инициализация даты
+                {
+                    dateEvent = DateTime.Parse(aData.Text.Split(' ')[0]);
+                }
+                else
+                {
+                    dateEvent = DateTime.Now;
+                }
+                List<Event> events = ev.Where(tb => tb.date == dateEvent).ToList();//нужное мероприятие
+                                                                                   //запись
+                Record r = new Record
+                {
+                    idRecord = 1,
+                    idEvent = events[0].idEvent,
+                    idMember = member.idMember
+                };
+                DataBaseConnect.DataBase.Record.Add(r);
+                DataBaseConnect.DataBase.SaveChanges();
+                DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+                bReg.Visibility = Visibility.Hidden;
+                bDel.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
-        private void b_Click(object sender, RoutedEventArgs e)
+        private void b_Click(object sender, RoutedEventArgs e)//Нажатие на кнопку с датой
         {
-            Button bt = (Button)sender;
-            string day = bt.Content.ToString();
-            int monthN = timeData.giveMonthNum(aMonth.Text.Split(' ')[0]);
-            string month;
-            if (int.Parse(day) < 10)
+            Button bt = (Button)sender;//инициализация кнопки            
+            string day = bt.Content.ToString();//инициализация дня кнопки            
+            int monthN = timeData.giveMonthNum(aMonth.Text.Split(' ')[0]);//инициализация месяца
+                                                                          //=> обращение к классу, метод которого по названию выводит номер месяца
+            string month;//объявление стринговой переменной Месяц            
+            string year = aMonth.Text.Split(' ')[1];//инициализация года
+
+            if (int.Parse(day) < 10)//приведение переменной День к каноничному виду ДД
             {
                 day = "0" + day;
             }
-            if (monthN < 10)
+            if (monthN < 10)//приведение переменной Месяц к каноничному виду ММ
             {
                 month = "0" + monthN;
             }
@@ -64,48 +130,48 @@ namespace teaTime
             {
                 month = "" + monthN;
             }
-            string dataheader = day + "." + month + "." + int.Parse(aMonth.Text.Split(' ')[1]);
-            changeEventDescription(dataheader);
+            string dataheader = day + "." + month + "." + year;//Формирование даты проведения мероприятия            
+            changeEventDescription(dataheader);//вызов функции для изменения блока с информацией о мероприятии
         }
         private void loadedCalendar()
         {
             string dateNow = DateTime.Now.ToString(); //получение сегодняшней даты
-            string yearNow = (dateNow.Split(' ')[0]).Split('.')[2];
-            aMonth.Text = timeData.giveMonthName(int.Parse(dateNow.Split('.')[1])) + yearNow;
+            string yearNow = (dateNow.Split(' ')[0]).Split('.')[2];//получение года
+            aMonth.Text = timeData.giveMonthName(int.Parse(dateNow.Split('.')[1])) + yearNow;//получение месяца => месяц + год - заголовок
             int countDay = DateTime.DaysInMonth(int.Parse(yearNow), int.Parse(dateNow.Split('.')[1])); // количество дней в месяце
-            int day = (int)DateTime.Parse("01." + (dateNow.Split('.')[1]) + "." + yearNow).DayOfWeek;
-            if (day == 0)
+            int day = (int)DateTime.Parse("01." + (dateNow.Split('.')[1]) + "." + yearNow).DayOfWeek;//получение дня недели с которого начинается месяц
+            if (day == 0)//0 - воскресенье => 0 = 7
             {
                 day = 7;
             }
-            nullValueButton();
-            writeValueButton(countDay, day);
+            nullValueButton();//обнуление всех ячеек кадендаря
+            writeValueButton(countDay, day);//запись всех дат в ячейки таблицы
         }
         private void bRight_Click(object sender, RoutedEventArgs e)
         {
-            string month = aMonth.Text.Split(' ')[0];
-            int year = int.Parse(aMonth.Text.Split(' ')[1]);
-            int numMonth = timeData.giveMonthNum(month);
-            if (numMonth == 12)
+            string month = aMonth.Text.Split(' ')[0];//получение месяца
+            int year = int.Parse(aMonth.Text.Split(' ')[1]);//получение года
+            int numMonth = timeData.giveMonthNum(month);//получение месяца по году
+            if (numMonth == 12)//если декабрь, то слю месяц - январь
             {
                 year++;
                 numMonth = 1;
             }
-            else
+            else//иначе просто сл месяц
             {
                 numMonth++;
             }
-            aMonth.Text = timeData.giveMonthName(numMonth) + year;
-            nullValueButton();
+            aMonth.Text = timeData.giveMonthName(numMonth) + year;//заголовок
+            nullValueButton();//обнуление значения
             int countDay = DateTime.DaysInMonth(year, numMonth); // количество дней в месяце
-            int day = (int)DateTime.Parse("01." + numMonth + "." + year).DayOfWeek;
-            if (day == 0)
+            int day = (int)DateTime.Parse("01." + numMonth + "." + year).DayOfWeek;//получение дня недели с которого начинается месяц
+            if (day == 0)//0 - воскресенье => 0 = 7
             {
                 day = 7;
             }
-            writeValueButton(countDay, day);
-            nullColorDate();
-            loadedColorData();
+            writeValueButton(countDay, day);//запись всех дат в ячейки таблицы
+            nullColorDate();//обнуление цвета
+            loadedColorData();//закрасить ячейки с мероприятем
         }
         private void bLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -139,8 +205,8 @@ namespace teaTime
             {
                 for (int j = 1; j < 8; j++)
                 {
-                    string nameButton = "b" + i + j;
-                    changeContentButton(nameButton, "", false);
+                    string nameButton = "b" + i + j;//название кнопки
+                    changeContentButton(nameButton, "", false);//изменение кнопки 
                 }
             }
         }
@@ -194,22 +260,15 @@ namespace teaTime
                 bt.Visibility = Visibility.Hidden;
             }
         }
-       
-        List<DataTimeEvent> dataTime = new List<DataTimeEvent>();
         private void loadedData()
         {
-            //цикл с загрузкой даты и ее описания
-            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
-            {
-                dataTime = new ConverterBase().Converter(DB.Event.ToList());
-            }
+            dataTime = DataBaseConnect.DataBase.Event.ToList();//цикл с загрузкой даты и ее описания
         }
         private void loadedColorData()
         {
-            foreach (DataTimeEvent date in dataTime)
+            foreach (Event date in dataTime)
             {
-                //string[] line = date.Data.Split('.');
-                if (aMonth.Text == timeData.giveMonthName(int.Parse(date.Data.Split('.')[1])) + date.Data.Split('.')[2])
+                if (aMonth.Text == timeData.giveMonthName(int.Parse(Convert.ToString(date.date).Split('.')[1])) + Convert.ToString(date.date).Split(' ')[0].Split('.')[2])
                 {
                     for (int i = 1; i < 8; i++)
                     {
@@ -218,12 +277,11 @@ namespace teaTime
                             string name = "b" + j + i;
                             Button bt = (Button)this.FindName(name);
                             string contentButton = bt.Content.ToString().Replace('b', ' ').Trim();
-                            string locDate = date.Data.Split('.')[0];
+                            string locDate = Convert.ToString(date.date).Split('.')[0];
                             if (locDate[0] == '0')
                             {
                                 locDate = locDate.Replace("0", "");
                             }
-
                             if (contentButton == locDate)
                             {
                                 try
@@ -261,7 +319,8 @@ namespace teaTime
             noColorTextBlock();
             string header;
             bool flag = true;
-            if (dateHeader == DateTime.Now.ToString().Split(':')[0])
+            //новый заголовок
+            if (dateHeader == DateTime.Now.ToString().Split(' ')[0])
             {
                 header = "Сегодня";
             }
@@ -269,16 +328,17 @@ namespace teaTime
             {
                 header = dateHeader;
             }
-            foreach (DataTimeEvent data in dataTime)
+            foreach (Event data in dataTime)
             {
-                if (data.Data == dateHeader)
+                if (Convert.ToString(data.date).Split(' ')[0] == dateHeader)
                 {
-
-                    header += " в " + data.Time;
+                    //присвоение значений описанию
+                    header += " в " + data.time;
                     aData.Text = header;
-                    aName.Text = data.Name;
-                    aDescript.Text = data.Description;
-                    aTheme.Text = data.Theme;
+                    aName.Text = data.name;
+                    aDescript.Text = data.description;
+                    aTheme.Text = data.theme;
+                    //включение видимости
                     aData.Visibility = Visibility.Visible;
                     aName0.Visibility = Visibility.Visible;
                     aTheme0.Visibility = Visibility.Visible;
@@ -286,28 +346,49 @@ namespace teaTime
                     aName.Visibility = Visibility.Visible;
                     aTheme.Visibility = Visibility.Visible;
                     aDescript.Visibility = Visibility.Visible;
-                    if (DateTime.Parse(dateHeader) <= DateTime.Parse(DateTime.Now.ToString().Split(' ')[0]))
+                    //проверка кнопок
+                    if (data.date <= DateTime.Now)
                     {
+                        //отключение видимости кнопок если дата меро меньше сегодняшней
                         bReg.Visibility = Visibility.Hidden;
+                        bDel.Visibility = Visibility.Hidden;
                     }
                     else
                     {
-                        bReg.Visibility = Visibility.Visible;
-                    }                    
+                        //проверка записан или нет
+                        checkWrite(data.idEvent);
+                    }
                     flag = false;
                     break;
                 }
             }
             if (flag)
             {
+                //показать сведения о том что меро нет на этот день
                 aData.Text = header;
                 aData.Visibility = Visibility.Visible;
                 aNoEvent.Visibility = Visibility.Visible;
                 bReg.Visibility = Visibility.Hidden;
+                bDel.Visibility = Visibility.Hidden;
+            }
+        }
+        private void checkWrite(int idEvent)
+        {
+            //проверка записан человек или нет
+            List<Record> records = DataBaseConnect.DataBase.Record.ToList();//получение всех значений таблицы
+            List<Record> check = records.Where(tb => tb.idMember == member.idMember && tb.idEvent == idEvent).ToList();
+            if (check.Count == 0)
+            {
+                bReg.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                bDel.Visibility = Visibility.Visible;
             }
         }
         private void noColorTextBlock()
         {
+            //отключение видимости всех полей сведений о мероприятии
             aName0.Visibility = Visibility.Hidden;
             aTheme0.Visibility = Visibility.Hidden;
             aDescript0.Visibility = Visibility.Hidden;
@@ -317,8 +398,8 @@ namespace teaTime
             aDescript.Visibility = Visibility.Hidden;
             aNoEvent.Visibility = Visibility.Hidden;
             bReg.Visibility = Visibility.Hidden;
+            bDel.Visibility = Visibility.Hidden;
         }
-
     }
 }
 

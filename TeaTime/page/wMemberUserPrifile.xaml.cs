@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,53 +19,49 @@ using TeaTime;
 
 namespace teaTime
 {
-    /// <summary>
-    /// Логика взаимодействия для wMemberUserPrifile.xaml
-    /// </summary>
-    internal class Things
-    {
-        private int num;
-        private string name;
-        private string date;
-        private string time;
-        private string theme;
-        private string descript = "";
-        public int Num { get { return num; } set { num = value; } }
-        public string Name { get { return name; } set { name = value; } }
-        public string Date { get { return date; } set { date = value; } }
-        public string Time { get { return time; } set { time = value; } }
-        public string Theme { get { return theme; } set { theme = value; } }
-        public string Descript { get { return descript; } set { descript = value; } }
-
-    }
     public partial class wMemberUserPrifile : Page
     {
         Member member = new Member();
         public wMemberUserPrifile(Member user)
         {
-            InitializeComponent();
             this.member = user;
-        }
+            InitializeComponent();
 
+            loadData();
+        }
+        private void loadData()
+        {
+            aFIO.Text = member.surname + " " + member.name + " " + member.middleName;
+            aPhoneNumber.Text = member.phone;
+            aEmail.Text = member.email;
+        }
         private void bChange_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wMemberChangePrifile(member));
         }
-
         private void bHome_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wMemberMain(member));
         }
-        
-        private void tInfo_Loaded(object sender, RoutedEventArgs e)
+        private void eventClose_Initialized(object sender, EventArgs e)
         {
-            
+            try
+            {
+                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+                {
+                    ObservableCollection<DataTimeEvent> needEvent = new ObservableCollection<DataTimeEvent>();
+                    List<DataTimeEvent> allEvent = new ConverterBase().Converter(DB.Event.ToList(), DateTime.Now, ref member);
+                    foreach (DataTimeEvent a in allEvent)
+                    {
+                        needEvent.Add(a);
+                    }
+                    eventClose.ItemsSource = needEvent;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        private void tInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
     }
 }

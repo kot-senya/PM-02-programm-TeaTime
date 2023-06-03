@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TeaTime
 {
@@ -62,6 +63,39 @@ namespace TeaTime
                 }
             }
             return dataTimeEvents;
+        }
+        public List<DataTimeEvent> Converter(List<Event> List, DateTime date,ref Member member)
+        {
+            sort(List);
+            List<DataTimeEvent> dataTimeEvents = new List<DataTimeEvent>();
+            for (int i = 0; i < List.Count; i++)
+            {
+                if (List[i].date > date && checkInEvent(List[i], member.idMember))
+                {
+                    dataTimeEvents.Add(new DataTimeEvent
+                    {
+                        Data = Convert.ToString(List[i].date).Split(' ')[0] + " " + Convert.ToString(List[i].time).Split(':')[0] + ":" + Convert.ToString(List[i].time).Split(':')[1],
+                        Name = List[i].name,
+                        Description = List[i].description,
+                        Theme = List[i].theme
+                    });
+                }
+            }
+            return dataTimeEvents;
+        }
+        public bool checkInEvent(Event e,  int idMember)
+        {
+            bool flag = false;
+            List<Record> records = DataBaseConnect.DataBase.Record.ToList();
+            foreach (Record r in records)
+            {
+                if(r.idEvent == e.idEvent && r.idMember == idMember)
+                {
+                    flag = true;
+                }
+            }
+            return flag;
+
         }
         private void sort(List<Event> List)
         {

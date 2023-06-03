@@ -44,7 +44,7 @@ namespace teaTime
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new wWorkerUserPrifile(worker));
+            NavigationService.Navigate(new wMemberUserPrifile(member));
         }
     }
 }

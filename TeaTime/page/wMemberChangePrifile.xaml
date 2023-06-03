@@ -171,11 +171,11 @@
                                         <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="75 10 0 0">
-                                        <PasswordBox x:Name="aPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748" DataContextChanged="aPass_DataContextChanged"/>
+                                        <PasswordBox x:Name="aPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
                                         <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="75 10 0 0">
-                                        <PasswordBox x:Name="aкуPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748" DataContextChanged="aPass_DataContextChanged"/>
+                                        <PasswordBox x:Name="aкуPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
                                         <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                 </StackPanel>

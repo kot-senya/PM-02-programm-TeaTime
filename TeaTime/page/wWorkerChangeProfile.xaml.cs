@@ -43,7 +43,6 @@ namespace teaTime
             //rjl
             NavigationService.Navigate(new wWorkerUserPrifile(worker));
         }
-
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new wWorkerUserPrifile(worker));

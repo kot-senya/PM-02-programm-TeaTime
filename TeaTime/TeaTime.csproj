@@ -253,8 +253,15 @@
       <DependentUpon>Base.edmx</DependentUpon>
       <LastGenOutput>Base.cs</LastGenOutput>
     </Content>
-    <Content Include="pic\feather.png" />
-    <Content Include="pic\home.png" />
+    <Content Include="pic\feather.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="pic\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="pic\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="pic\teaIcon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

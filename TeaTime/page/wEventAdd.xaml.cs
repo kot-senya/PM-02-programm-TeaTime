@@ -37,23 +37,32 @@ namespace teaTime
         }
         private void nMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //bнициализация времение
             string hour = nHour.Text;
             string min = nMin.SelectedItem.ToString();
-            if (hour == "")
+            if (hour == "")//bнициализация времение
             {
-                hour = "00";
+                hour = "09";
             }
             aTime.Text = hour + ":" + min;
         }
         private void nHour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string hour = nHour.SelectedItem.ToString();
-            string min = nMin.Text;
-            if (min == "")
+            try
             {
-                min = "00";
+                //bнициализация времение
+                string hour = nHour.SelectedItem.ToString();
+                string min = nMin.Text;
+                if (min == "")//если не задано, то пустое
+                {
+                    min = "00";
+                }
+                aTime.Text = hour + ":" + min;
             }
-            aTime.Text = hour + ":" + min;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void nMin_Initialized(object sender, EventArgs e)
         {
@@ -73,12 +82,10 @@ namespace teaTime
         {
             try
             {
-                using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
-                {
-                    teaList = new ConverterBase().Converter(DB.Tea.ToList());
-                    items.Add(new TeaTimes() { num = items.Count + 1, value = teaList });
-                    nameTea.ItemsSource = items;
-                }
+                List<Tea> t = DataBaseConnect.DataBase.Tea.ToList();
+                teaList = t.Select(tb => tb.name).ToList();
+                items.Add(new TeaTimes() { num = items.Count + 1, value = teaList });
+                nameTea.ItemsSource = items;
             }
             catch (Exception ex)
             {
@@ -94,6 +101,10 @@ namespace teaTime
                 {
                     flag = false;
                     break;
+                }
+                else
+                {
+                    teaList.Remove(a.endTea);
                 }
             }
             if (flag)
@@ -111,12 +122,9 @@ namespace teaTime
         {
             if (Checks.check(this))
             {
-                List<Event> List = DataBaseConnect.DataBase.Event.ToList();
-                List<ProgrammEvent> ListTea = DataBaseConnect.DataBase.ProgrammEvent.ToList();
-                var lastItem = List.Last();
-                Event newEvent = new Event()
+               Event newEvent = new Event()//запись нового эвента
                 {
-                    idEvent = lastItem.idEvent + 1,
+                    idEvent = 1,
                     date = DateTime.Parse(dp.Text),
                     name = aName.Text,
                     theme = aTheme.Text,
@@ -129,8 +137,7 @@ namespace teaTime
                 {
                     if (a.endTea != "")
                     {
-                        var lastItem1 = ListTea.Last();
-                        ProgrammEvent newTea = new ProgrammEvent()
+                        ProgrammEvent newTea = new ProgrammEvent()//запись нового чая
                         {
                             idPogrammEvent = 1,
                             idEvent = newEvent.idEvent,

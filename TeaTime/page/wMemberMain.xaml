@@ -68,7 +68,7 @@
         <Border Width="800" Height="450">
             <Grid>
                 <TextBlock Text="Главная" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
-                <Button x:Name="bUserProfile" Width="240" Height="65" Margin="0 15 25 0" HorizontalAlignment="Right" FontFamily="{StaticResource GogoiaDeco}" Style="{DynamicResource RoundedButtonStyle}" ToolTip="Личный кабинет" Background="White" FontSize="15" Foreground="#A77748" VerticalAlignment="Top" Click="bUserProfile_Click"/>
+                <Button x:Name="bUserProfile" Width="140" Height="45" Margin="0 15 25 0" HorizontalAlignment="Right" FontFamily="{StaticResource GogoiaDeco}" Style="{DynamicResource RoundedButtonStyle}" ToolTip="Личный кабинет" Background="White" FontSize="15" Foreground="#A77748" VerticalAlignment="Top" Click="bUserProfile_Click"/>
                 <Grid Height="250" Width="250" Margin="431,100,119,100">
                     <Rectangle RadiusX="10" RadiusY="10" StrokeThickness="2" Fill="#FAEDCD" />
                     <TextBlock Text="Мероприятие" FontFamily="{StaticResource GogoiaDeco}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" Foreground="#A77748"/>
@@ -190,6 +190,7 @@
                     <TextBlock x:Name="aMonth" Text="" Margin="105,109,0,314" HorizontalAlignment="Left" FontFamily="{StaticResource GogoiaDeco}" TextAlignment="Center" Foreground="#A77748" FontWeight="Bold" FontSize="20" Width="250"/>
                 </Grid>
                 <Button x:Name="bReg" Width="140" Height="45" Margin="0,366,170,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="bReg_Click" Content="Записаться" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" Foreground="#A77748" Style="{DynamicResource RoundedButtonStyle}" Background="#FAEDCD"/>
+                <Button x:Name="bDel" Width="140" Height="45" Margin="0,366,170,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="bDel_Click" Content="Не пойду" FontFamily="{StaticResource GogoiaDeco}" FontSize="25" Foreground="#A77748" Style="{DynamicResource RoundedButtonStyle}" Background="#FAEDCD"/>
             </Grid>
         </Border>
     </Viewbox>

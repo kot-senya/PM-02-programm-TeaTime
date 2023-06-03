@@ -23,8 +23,16 @@ namespace TeaTime
     {
         public MainWindow()
         {
-            InitializeComponent();
-            frame.Content = new Authorization();
+            try
+            {
+                InitializeComponent();
+                frame.Content = new Authorization();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }
