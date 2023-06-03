@@ -104,7 +104,7 @@
     <Viewbox Stretch="Uniform">
         <Border>
             <Grid>
-        <TextBlock Text="Редактировать профиль" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="15 10 0 0"/>
+                <TextBlock Text="Редактировать профиль" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="15 10 0 0"/>
                 <Button x:Name="bClose" Width="35" Height="35" Margin="0 10 100 0" Click="bClose_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle2}">
                     <Button.Content>
                         <Grid>
@@ -114,78 +114,131 @@
                     </Button.Content>
                 </Button>
                 <Grid>
-            <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 0, 0, 10" Height="300" Width="370" BorderBrush="#D3DB94">
-            <TabItem x:Name="tea" >
-                <TabItem.Header>
-                    <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
-                        Личная информация
-                    </Label>
-                </TabItem.Header>
-                    <Grid>
-                        <StackPanel Margin="10 5 0 0">
-                            <TextBlock Text="Фамилия" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 5 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="Имя" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="Отчество" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="Телефон" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="Почта" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
-                        </StackPanel>
-                        <StackPanel Margin="85 3 0 0">
-                            <StackPanel Margin="0 0 0 0">
-                                <TextBox x:Name="aSurname"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="0 5 0 0">
-                                <TextBox x:Name="aName"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="0 5 0 0">
-                                <TextBox x:Name="aMiddleName"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="0 5 0 0">
-                                <TextBox x:Name="aPhoneNum"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="0 5 0 0">
-                                <TextBox x:Name="aEmail"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-            </TabItem>
-            <TabItem x:Name="guests">
-                <TabItem.Header >
-                    <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
-                        Параметры входа
-                    </Label>
-                </TabItem.Header>
-                    <Grid>
-                        <StackPanel Margin="0 10 0 0">
-                            <TextBlock Text="Логин" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="Пароль" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
-                            <TextBlock Text="пароль*" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
-                        </StackPanel>
-                        <StackPanel Margin="0 10 0 0">
-                            <StackPanel Margin="75 0 0 0">
-                                <TextBox x:Name="aLogin"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="75 10 0 0">
-                                <PasswordBox x:Name="aPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                            <StackPanel Margin="75 10 0 0">
-                                <PasswordBox x:Name="aкуPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-            </TabItem>
-        </TabControl>             
-        </Grid>
-        <Button x:Name="bChange" Width="170" Height="35" Margin="315,387,315,28" Click="bChange_Click" Background="#FAEDCD" Content="Изменить" FontSize="20" Foreground="#A77748" FontFamily="{StaticResource GogoiaDeco}" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}"/>
-    </Grid>
+                    <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 0, 0, 10" Height="300" Width="370" BorderBrush="#D3DB94">
+                        <TabItem x:Name="tea" >
+                            <TabItem.Header>
+                                <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
+                                    Личная информация
+                                </Label>
+                            </TabItem.Header>
+                            <Grid>
+                                <StackPanel Margin="10 5 0 0">
+                                    <TextBlock Text="Фамилия" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 5 0 0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Имя" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Отчество" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Телефон" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Почта" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="0 7 0 0" VerticalAlignment="Top" />
+                                </StackPanel>
+                                <StackPanel Margin="85 3 0 0">
+                                    <StackPanel Margin="0 0 0 0">
+                                        <TextBox x:Name="aSurname" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0 5 0 0">
+                                        <TextBox x:Name="aName" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0 5 0 0">
+                                        <TextBox x:Name="aMiddleName" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0 5 0 0">
+                                        <TextBox x:Name="aPhoneNum" IsReadOnly ="True"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0 5 0 0">
+                                        <TextBox x:Name="aEmail" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Button x:Name="bSurname" Width="25" Height="25" Margin="0 3 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bName" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bMiddleName" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bPhoneNum" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bEmail" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="guests">
+                            <TabItem.Header >
+                                <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
+                                    Параметры входа
+                                </Label>
+                            </TabItem.Header>
+                            <Grid>
+                                <StackPanel Margin="0 10 0 0">
+                                    <TextBlock Text="Логин" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock Text="Пароль" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock x:Name="pText" Text="пароль*" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
+                                </StackPanel>
+                                <StackPanel Margin="0 10 0 0">
+                                    <StackPanel Margin="75 0 0 0">
+                                        <TextBox x:Name="aLogin" IsReadOnly ="True"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                    <Grid Margin="75 10 0 0">
+                                        <PasswordBox x:Name="aPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <TextBox x:Name="aPassw" IsEnabled="False" Text="   *************" Width="260" Margin="0 0 0 0" Height="20" BorderThickness="0" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Foreground="#A77748"/>
+                                        <Line  X1="0" Y1="20" X2="245" Y2="20" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </Grid>
+                                    <StackPanel Margin="75 10 0 0">
+                                        <PasswordBox x:Name="arePass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line x:Name="pLine" X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="0 5 5 0">
+                                    <Button x:Name="bLogin" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bPass" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+                <Button x:Name="bChange" Width="170" Height="35" Margin="315,387,315,28" Click="bChange_Click" Background="#FAEDCD" Content="Изменить" FontSize="20" Foreground="#A77748" FontFamily="{StaticResource GogoiaDeco}" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle}"/>
+            </Grid>
         </Border>
     </Viewbox>
-    
 </Page>

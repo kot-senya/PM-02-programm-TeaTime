@@ -99,6 +99,17 @@ namespace TeaTime
                 page.ePhoneNumber.Visibility = Visibility.Visible;
                 flag = false;
             }
+            List<Member> m = DataBaseConnect.DataBase.Member.ToList().Where(tb => tb.login == page.aLogin.Text).ToList();
+            List<Worker> w = DataBaseConnect.DataBase.Worker.ToList().Where(tb => tb.login == page.aLogin.Text).ToList();
+            if (m.Count == 0 && w.Count == 0)
+            {
+                page.eLogin.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                page.eLogin.Visibility = Visibility.Visible;
+                flag = false;
+            }
             if (page.aPass.Password == page.arePass.Password && page.aPass.Password != "" && page.aPass.Password.Length > 1)
             {
                 page.ePass.Visibility = Visibility.Hidden;

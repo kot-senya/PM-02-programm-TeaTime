@@ -112,11 +112,12 @@
             <Grid>
                 <Grid VerticalAlignment="Top">
                     <Menu Height="30" Width="Auto" VerticalAlignment="Center" Background="#FAEDCD" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748">
-                        <Menu.Resources>
-
-                        </Menu.Resources>
                         <MenuItem x:Name="btMain" Header="Главная" Height="30" Width="70" Background="#D3DB94" Template="{DynamicResource MenuMainItem}"></MenuItem>
-                        <MenuItem Header="" IsEnabled="False" Width="524"></MenuItem>
+                        <MenuItem Header="Прочее" Height="30" Width="60" Background="#FAEDCD" Template="{DynamicResource MenuMainItem}">
+                            <MenuItem Foreground="#A77748" Background="#FAEDCD" Header="1" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
+                            <MenuItem Foreground="#A77748" Background="#FAEDCD" Header="2" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="" IsEnabled="False" Width="464"></MenuItem>
                         <MenuItem x:Name="btUser" Click="bUserProfile_Click" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Height="30" Width="205.5" Background="#FAEDCD" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748" Template="{DynamicResource MenuMainItem}"/>
                     </Menu>
                 </Grid>

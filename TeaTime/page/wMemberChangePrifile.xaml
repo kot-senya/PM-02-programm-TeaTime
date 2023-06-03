@@ -101,6 +101,7 @@
             </Setter>
         </Style>
     </Page.Resources>
+
     <Viewbox Stretch="Uniform">
         <Border>
             <Grid>
@@ -131,25 +132,62 @@
                                 </StackPanel>
                                 <StackPanel Margin="85 3 0 0">
                                     <StackPanel Margin="0 0 0 0">
-                                        <TextBox x:Name="aSurname"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aSurname" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="0 5 0 0">
-                                        <TextBox x:Name="aName"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aName" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="0 5 0 0">
-                                        <TextBox x:Name="aMiddleName"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aMiddleName" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="0 5 0 0">
-                                        <TextBox x:Name="aPhoneNum"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aPhoneNum" IsReadOnly ="True"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
                                     <StackPanel Margin="0 5 0 0">
-                                        <TextBox x:Name="aEmail"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aEmail" IsReadOnly ="True" Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
+                                </StackPanel>
+                                <StackPanel>
+                                    <Button x:Name="bSurname" Width="25" Height="25" Margin="0 3 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bName" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bMiddleName" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bPhoneNum" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bEmail" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -163,21 +201,38 @@
                                 <StackPanel Margin="0 10 0 0">
                                     <TextBlock Text="Логин" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
                                     <TextBlock Text="Пароль" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
-                                    <TextBlock Text="пароль*" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
+                                    <TextBlock x:Name="pText" Text="пароль*" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="10 7 0 0" VerticalAlignment="Top" />
                                 </StackPanel>
                                 <StackPanel Margin="0 10 0 0">
                                     <StackPanel Margin="75 0 0 0">
-                                        <TextBox x:Name="aLogin"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <TextBox x:Name="aLogin" IsReadOnly ="True"  Width="260" Height="25" Text="" FontFamily="{StaticResource UniNeue-Regular}" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" FontSize="12" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
-                                    <StackPanel Margin="75 10 0 0">
+                                    <Grid Margin="75 10 0 0">
                                         <PasswordBox x:Name="aPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
-                                    </StackPanel>
+                                        <TextBox x:Name="aPassw" IsEnabled="False" Text="   *************" Width="260" Margin="0 0 0 0" Height="20" BorderThickness="0" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Foreground="#A77748"/>
+                                        <Line  X1="0" Y1="20" X2="245" Y2="20" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                    </Grid>
                                     <StackPanel Margin="75 10 0 0">
-                                        <PasswordBox x:Name="aкуPass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
-                                        <Line X1="0" Y1="0" X2="260" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
+                                        <PasswordBox x:Name="arePass" Password="" Width="260" Height="20" FontFamily="{StaticResource UniNeue-Regular}" FontSize="12" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="White" Foreground="#A77748"/>
+                                        <Line x:Name="pLine" X1="0" Y1="0" X2="245" Y2="0" StrokeDashArray="4 2" StrokeDashCap="Round" Stroke="#A77748" />
                                     </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="0 5 5 0">
+                                    <Button x:Name="bLogin" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button x:Name="bPass" Width="25" Height="25" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="b_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                                        <Button.Content>
+                                            <Viewbox Width="20" Height="20">
+                                                <Image Source="pack://application:,,,/pic/feather.png"/>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
