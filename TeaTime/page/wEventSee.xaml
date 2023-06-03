@@ -27,6 +27,44 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#E8ECC8"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#E8ECC8"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#E8ECC8"/>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="RoundedButtonStyle2" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -106,6 +144,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Page.Resources>
 
     <Grid>
@@ -114,6 +153,7 @@
                 <Grid>
                     <TextBlock Text="Посмотреть мероприятие" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
                     <Rectangle Fill="#FAEDCD" RadiusX="20" RadiusY="20" Height="350" Width="700" Margin="0,73,0,27"/>
+                    <Button x:Name="bDel" Width="140" Height="45" Margin="0,10,120,0" HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="bDel_Click" FontSize="25" FontFamily="{StaticResource GogoiaDeco}" Content="Удалить" Foreground="#A77748" Background="#FAEDCD" Style="{DynamicResource RoundedButtonStyle}"/>
                     <Button x:Name="bClose" Width="35" Height="35" Margin="0 15 50 0" Click="bClose_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FAEDCD" BorderThickness="0" Style="{DynamicResource RoundedButtonStyle2}">
                         <Button.Content>
                             <Grid>

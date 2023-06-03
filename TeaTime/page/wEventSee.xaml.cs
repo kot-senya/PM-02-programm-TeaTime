@@ -21,16 +21,15 @@ namespace teaTime
         public int num { get; set; }
         public string value { get; set; }
     }
-    /// <summary>
-    /// Логика взаимодействия для wEventSee.xaml
-    /// </summary>
     public partial class wEventSee : Page
     {
         Worker worker = new Worker();
-        public wEventSee(DataTimeEvent events, Worker user)
+        Event ev;
+        public wEventSee(DataTimeEvent events, Worker user, Event e)
         {
-            InitializeComponent();
             worker = user;
+            InitializeComponent();
+            ev = e;
             init(events);
             loadData();
         }
@@ -88,6 +87,26 @@ namespace teaTime
         }
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new wWorkerMain(worker));
+        }
+
+        private void bDel_Click(object sender, RoutedEventArgs e)
+        {
+            //удадение из таблицы записи
+            List<Record> r = DataBaseConnect.DataBase.Record.ToList().Where(tb => tb.idEvent == ev.idEvent).ToList();
+            foreach(Record tb in r)
+            {
+                DataBaseConnect.DataBase.Record.Remove(tb);
+            }
+            //удадение из таблицы программы
+            List<ProgrammEvent> t = DataBaseConnect.DataBase.ProgrammEvent.ToList().Where(tb => tb.idEvent == ev.idEvent).ToList();
+            foreach (ProgrammEvent tb in t)
+            {
+                DataBaseConnect.DataBase.ProgrammEvent.Remove(tb);
+            }
+            DataBaseConnect.DataBase.Event.Remove(ev);
+            DataBaseConnect.DataBase.SaveChanges();
+            DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
             NavigationService.Navigate(new wWorkerMain(worker));
         }
     }

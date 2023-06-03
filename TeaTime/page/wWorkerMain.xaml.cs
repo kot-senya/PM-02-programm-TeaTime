@@ -41,6 +41,17 @@ namespace teaTime
         }
         private void bRead_Click(object sender, RoutedEventArgs e)
         {
+            List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
+            DateTime dateEvent;
+            if (aMonth.Text.Split(' ')[1] != "Сегодня")//инициализация даты
+            {
+                dateEvent = DateTime.Parse(aData.Text.Split(' ')[0]);
+            }
+            else
+            {
+                dateEvent = DateTime.Now;
+            }
+            List<Event> events = ev.Where(tb => tb.date == dateEvent).ToList();//нужное мероприятие
             NavigationService.Navigate(new wEventSee(new DataTimeEvent
             {
                 Data = aData.Text.Split(' ')[0],
@@ -48,7 +59,7 @@ namespace teaTime
                 Name = aName.Text,
                 Theme = aTheme.Text,
                 Description = aDescript.Text
-            }, worker));
+            }, worker, events[0]));
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
@@ -318,7 +329,6 @@ namespace teaTime
                 {
                     bWrite.Visibility = Visibility.Visible;
                 }
-
             }
         }
         private void noColorTextBlock()
