@@ -144,7 +144,29 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="white"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Static.Border}"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -189,7 +211,7 @@
                                                 Чайная программа
                                             </Label>
                                         </TabItem.Header>
-                                        <ListBox x:Name="teaProgramm" BorderThickness="0">
+                                        <ListBox x:Name="teaProgramm" BorderThickness="0" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
@@ -208,7 +230,7 @@
                                         </TabItem.Header>
                                         <ScrollViewer Width="280">
                                             <StackPanel>
-                                                <ListBox x:Name="guestsList" BorderThickness="0">
+                                                <ListBox x:Name="guestsList" BorderThickness="0" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
                                                     <ListBox.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal">

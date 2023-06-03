@@ -97,6 +97,13 @@
                             </Viewbox>
                         </Button.Content>
                     </Button>
+                    <Button x:Name="bParty" Width="35" Height="35" Margin="0 20 100 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="bParty_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                        <Button.Content>
+                            <Viewbox Width="30" Height="30">
+                                <Image Source="pack://application:,,,/pic/party.png"/>
+                            </Viewbox>
+                        </Button.Content>
+                    </Button>
                     <TextBlock Text="Профиль" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
                     <Grid Width="130" Height="130"  Margin="45 75 0 0"  HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Rectangle RadiusX="10" RadiusY="10" Fill="white"/>

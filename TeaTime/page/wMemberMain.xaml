@@ -69,6 +69,13 @@
             <Grid>
                 <TextBlock Text="Главная" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
                 <Button x:Name="bUserProfile" Width="140" Height="45" Margin="0 15 25 0" HorizontalAlignment="Right" FontFamily="{StaticResource GogoiaDeco}" Style="{DynamicResource RoundedButtonStyle}" ToolTip="Личный кабинет" Background="White" FontSize="15" Foreground="#A77748" VerticalAlignment="Top" Click="bUserProfile_Click"/>
+                <Button x:Name="bParty" Width="35" Height="35" Margin="0 20 180 0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip ="Главная" Click="bParty_Click" BorderThickness="0" Background="White"  Style="{DynamicResource RoundedButtonStyle}">
+                    <Button.Content>
+                        <Viewbox Width="30" Height="30">
+                            <Image Source="pack://application:,,,/pic/party.png"/>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
                 <Grid Height="250" Width="250" Margin="431,100,119,100">
                     <Rectangle RadiusX="10" RadiusY="10" StrokeThickness="2" Fill="#FAEDCD" />
                     <TextBlock Text="Мероприятие" FontFamily="{StaticResource GogoiaDeco}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" Foreground="#A77748"/>

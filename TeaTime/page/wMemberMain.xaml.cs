@@ -401,6 +401,11 @@ namespace teaTime
             bReg.Visibility = Visibility.Hidden;
             bDel.Visibility = Visibility.Hidden;
         }
+
+        private void bParty_Click(object sender, RoutedEventArgs e)
+        {
+            new memberEvent(member).Show();
+        }
     }
 }
 

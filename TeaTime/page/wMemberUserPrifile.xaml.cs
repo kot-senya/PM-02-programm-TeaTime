@@ -76,5 +76,10 @@ namespace teaTime
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void bParty_Click(object sender, RoutedEventArgs e)
+        {
+            new memberEvent(member).Show();
+        }
     }
 }
