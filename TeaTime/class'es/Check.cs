@@ -138,70 +138,35 @@ namespace TeaTime
             Regex checkNumberPhone = new Regex(@"^(8)\d{10}$");
             bool flag = true;
 
-            if (checkName.IsMatch(page.aSurname.Text))
-            {
-                page.eSurname.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.eSurname.Visibility = Visibility.Visible;
+            if (!checkName.IsMatch(page.aSurname.Text))
+            { 
                 flag = false;
             }
-            if (checkName.IsMatch(page.aName.Text))
+            if (!checkName.IsMatch(page.aName.Text))
             {
-                page.eName.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.eName.Visibility = Visibility.Visible;
                 flag = false;
             }
-            if (checkName.IsMatch(page.aMiddleName.Text))
+            if (!checkName.IsMatch(page.aMiddleName.Text))
             {
-                page.eMiddleName.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.eMiddleName.Visibility = Visibility.Visible;
                 flag = false;
             }
-            if (checkEmail.IsMatch(page.aEmail.Text))
+            if (!checkEmail.IsMatch(page.aEmail.Text))
             {
-                page.eEmail.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.eEmail.Visibility = Visibility.Visible;
                 flag = false;
             }
-            if (checkNumberPhone.IsMatch(page.aPhoneNum.Text))
+            if (!checkNumberPhone.IsMatch(page.aPhoneNum.Text))
             {
-                page.ePhoneNumber.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.ePhoneNumber.Visibility = Visibility.Visible;
                 flag = false;
             }
             List<Member> m = DataBaseConnect.DataBase.Member.ToList().Where(tb => tb.login == page.aLogin.Text).ToList();
             List<Worker> w = DataBaseConnect.DataBase.Worker.ToList().Where(tb => tb.login == page.aLogin.Text).ToList();
-            if (m.Count == 0 && w.Count == 0)
+            if (m.Count != 0 && w.Count != 0)
             {
-                page.eLogin.Visibility = Visibility.Hidden;
+                 flag = false;
             }
-            else
+            if (page.aPass.Password == "" && page.aPass.Password.Length <= 1)
             {
-                page.eLogin.Visibility = Visibility.Visible;
-                flag = false;
-            }
-            if (page.aPass.Password != "" && page.aPass.Password.Length > 1)
-            {
-                page.ePass.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                page.ePass.Visibility = Visibility.Visible;
-                flag = false;
+               flag = false;
             }
             return flag;
         }
