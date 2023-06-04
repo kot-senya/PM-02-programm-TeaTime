@@ -164,7 +164,7 @@ namespace TeaTime
             {
                  flag = false;
             }
-            if (page.aPass.Password == "" && page.aPass.Password.Length <= 1)
+            if (page.aPass.Password == "" || page.aPass.Password.Length <= 1)
             {
                flag = false;
             }

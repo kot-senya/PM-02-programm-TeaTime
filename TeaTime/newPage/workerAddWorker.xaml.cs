@@ -37,6 +37,7 @@ namespace TeaTime
                         name = aName.Text,
                         middleName = aMiddleName.Text,
                         phone = aPhoneNum.Text,
+                        position="Мастер чая",
                         email = aEmail.Text,
                         login = aLogin.Text,
                         password = aPass.Password
