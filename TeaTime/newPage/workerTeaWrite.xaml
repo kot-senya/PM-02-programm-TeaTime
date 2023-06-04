@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeaTime.newPage"
-        mc:Ignorable="d"
-        Title="workerTeaWrite" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        mc:Ignorable="d"  Background="#82c8c1"
+        Icon="pack://application:,,,/pic/icon.png"
+        Title="Изменение списка чая" Height="445" Width="750">
+    <Viewbox Stretch="Uniform">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <Image Source="pack://application:,,,/pic/texRab.jpg"/>
+            </Grid>
+        </Border>
+    </Viewbox>
 </Window>

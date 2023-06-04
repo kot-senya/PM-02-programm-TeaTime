@@ -32,6 +32,10 @@ namespace teaTime
             ev = e;
             init(events);
             loadData();
+            if(DateTime.Parse(aDate.Text) <= DateTime.Now)
+            {
+                bDel.Visibility = Visibility.Hidden;
+            }
         }
 
         private void init(DataTimeEvent events)

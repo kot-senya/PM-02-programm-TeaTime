@@ -32,6 +32,7 @@ namespace TeaTime
                 {
                     Worker newUser = new Worker()
                     {
+                        idWorker = 1,
                         surname = aSurname.Text,
                         name = aName.Text,
                         middleName = aMiddleName.Text,
