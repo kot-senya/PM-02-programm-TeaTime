@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using teaTime;
 
 namespace TeaTime
@@ -15,9 +16,9 @@ namespace TeaTime
         {
             bool check = false;
             worker = new Worker();
-            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+            try
             {
-                List<Worker> w = DB.Worker.ToList();
+                List<Worker> w = DataBaseConnect.DataBase.Worker.ToList();
                 for (int i = 0; i < w.Count; i++)
                 {
                     if (w[i].login == login && w[i].password == password)
@@ -27,15 +28,20 @@ namespace TeaTime
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             return check;
         }
         public static bool checkMember(string login, string password, out Member member)
         {
             bool check = false;
             member = new Member();
-            using (KotkovaISazonovaEntities_ DB = new KotkovaISazonovaEntities_())
+            try
             {
-                List<Member> m = DB.Member.ToList();
+                List<Member> m = DataBaseConnect.DataBase.Member.ToList();
                 for (int i = 0; i < m.Count; i++)
                 {
                     if (m[i].login == login && m[i].password == password)
@@ -44,6 +50,10 @@ namespace TeaTime
                         member = m[i];
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             return check;
         }
@@ -184,7 +194,7 @@ namespace TeaTime
                 page.eLogin.Visibility = Visibility.Visible;
                 flag = false;
             }
-            if (page.aPass.Password == page.arePass.Password && page.aPass.Password != "" && page.aPass.Password.Length > 1)
+            if (page.aPass.Password != "" && page.aPass.Password.Length > 1)
             {
                 page.ePass.Visibility = Visibility.Hidden;
             }

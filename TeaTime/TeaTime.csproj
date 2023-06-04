@@ -103,6 +103,9 @@
     <Compile Include="newPage\workerChengeEvent.xaml.cs">
       <DependentUpon>workerChengeEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="newPage\workerTeaWrite.xaml.cs">
+      <DependentUpon>workerTeaWrite.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="newPage\workerChengeEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="newPage\workerTeaWrite.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

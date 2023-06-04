@@ -114,8 +114,8 @@
                     <Menu Height="30" Width="Auto" VerticalAlignment="Center" Background="#FAEDCD" FontSize="20" FontFamily="{StaticResource GogoiaDeco}" Foreground="#A77748">
                         <MenuItem x:Name="btMain" Header="Главная" Height="30" Width="70" Background="#D3DB94" Template="{DynamicResource MenuMainItem}"></MenuItem>
                         <MenuItem Header="Прочее" Height="30" Width="60" Background="#FAEDCD" Template="{DynamicResource MenuMainItem}">
-                            <MenuItem x:Name="btEv" Click="btEv_Click" Foreground="#A77748" Background="#FAEDCD" Header="Добавить администратора" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
-                            <MenuItem x:Name="btWork" Click="btWork_Click" Foreground="#A77748" Background="#FAEDCD" Header="Редактировать мероприятие" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
+                            <MenuItem x:Name="btEv" Click="btEv_Click" Foreground="#A77748" Background="#FAEDCD" Header="Редактировать мероприятие" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
+                            <MenuItem x:Name="btWork" Click="btWork_Click" Foreground="#A77748" Background="#FAEDCD" Header="Добавить администратора" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
                             <MenuItem x:Name="btTea" Click="btTea_Click" Foreground="#A77748" Background="#FAEDCD" Header="Изменить список чая" FontFamily="{StaticResource GogoiaDeco}" Template="{DynamicResource MenuMainItem}"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="" IsEnabled="False" Width="464"></MenuItem>

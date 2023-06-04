@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeaTime;
+using TeaTime.newPage;
 
 namespace teaTime
 {
@@ -72,6 +73,20 @@ namespace teaTime
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void btTea_Click(object sender, RoutedEventArgs e)
+        {
+            new workerTeaWrite().Show();
+        }
+
+        private void btWork_Click(object sender, RoutedEventArgs e)
+        {
+            new workerAddWorker().Show();
+        }
+
+        private void btEv_Click(object sender, RoutedEventArgs e)
+        {
+            new workerChengeEvent().Show();
         }
     }
 }

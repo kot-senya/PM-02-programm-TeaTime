@@ -43,6 +43,8 @@ namespace TeaTime
                     DataBaseConnect.DataBase.Worker.Add(newUser);
                     DataBaseConnect.DataBase.SaveChanges();
                     DataBaseConnect.DataBase = new KotkovaISazonovaEntities_();
+                    MessageBox.Show("Сотрудник добавлен в базу");
+                    this.Close();
                 }
                 catch
                 {

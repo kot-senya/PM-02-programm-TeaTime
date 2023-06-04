@@ -4,9 +4,239 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeaTime.newPage"
-        mc:Ignorable="d"
-        Title="Изменить информацию о мероприятии" Height="450" Width="800">
+        mc:Ignorable="d" Background="#D3DB94"
+        Icon="pack://application:,,,/pic/icon.png"
+        Title="Изменить информацию о мероприятии" Height="450" Width="450">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#E8ECC8"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#E8ECC8"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E8ECC8"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#E8ECC8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+        <Style x:Key="GroupBoxStyle1" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderBrush" Value="#D5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="6"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="4" Grid.Column="0" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3"/>
+                            <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="4" CornerRadius="4" Grid.Row="1" Grid.RowSpan="3">
+                                <Border.OpacityMask>
+                                    <MultiBinding ConverterParameter="7" Converter="{StaticResource BorderGapMaskConverter}">
+                                        <Binding ElementName="Header" Path="ActualWidth"/>
+                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                                </Border>
+                            </Border>
+                            <Border x:Name="Header" Grid.Column="1" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                            <ContentPresenter Grid.ColumnSpan="2" Grid.Column="1" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SimpleListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="white"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource Button.Static.Border}"/>
+                                <Setter TargetName="Border" Property="BorderBrush"  Value="#D3DB94"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="Background" Value="#D3DB94"/>
+            <Setter Property="BorderBrush" Value="#D3DB94"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <BulletDecorator Background="white">
+                            <BulletDecorator.Bullet>
+                                <Grid Width="17" Height="17">
+                                    <Border x:Name="Border" Background="white" BorderBrush="#D3DB94" BorderThickness="2" CornerRadius="1,1,1,1"/>
+                                    <Grid Width="13" Height="13">
+                                        <Path x:Name="CheckMark" Stroke="#D3DB94" StrokeThickness="2" SnapsToDevicePixels="False" Data="M 2,4 C 2,4 3,5 5,13 C 5,13 5,3 12,0" Margin="1 1 1 1" ClipToBounds="False" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
+                                    </Grid>
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="CheckMark"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#E8ECC8" TargetName="Border"/>
+                                <Setter Property="BorderBrush" Value="#E8ECC8" TargetName="Border"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" Value="#E8ECC8" TargetName="Border"/>
+                                <Setter Property="BorderBrush" Value="#E8ECC8" TargetName="Border"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" Value="#E8ECC8" TargetName="Border"/>
+                                <Setter Property="BorderBrush" Value="#E8ECC8" TargetName="Border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Viewbox Stretch="Uniform" Grid.RowSpan="2">
+            <Border Width="450" Height="450">
+                <Grid>
+                    <TextBlock Text="Редактировать" FontFamily="{StaticResource GogoiaDeco}" FontSize="35" HorizontalAlignment="Left" Foreground="#A77748" Margin="45 15 0 0"/>
+                    <Button x:Name="bWrite" Width="140" Height="45" Margin="0,11,23,0" HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="bWrite_Click" FontSize="25" FontFamily="{StaticResource GogoiaDeco}" Content="Изменить" Foreground="#A77748" Background="#FAEDCD" Style="{DynamicResource RoundedButtonStyle}"/>
+                    <StackPanel>
+                        <TabControl Name="myTabControl"  TabStripPlacement="Top" Margin="0, 65, 0, 10" Height="375" Width="400" BorderBrush="#D3DB94">
+                            <TabItem x:Name="tea" >
+                                <TabItem.Header>
+                                    <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
+                                        Информация о мероприятии
+                                    </Label>
+                                </TabItem.Header>
+                                <Grid Height="325" Width="390">
+                                    <TextBlock Text="Дата" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="15,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.943" />
+                                    <TextBlock x:Name="aDate" Width="100" Height="20" Margin="100,25,0,-10" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" Background="White"/>
+                                    <DatePicker x:Name="dp" Width="120" Height="25" FontSize="13" SelectedDateFormat="Short" Margin="90,23,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" BorderBrush="#FAEDCD" BorderThickness="2" SelectedDateChanged="dp_SelectedDateChanged"/>
+                                    <TextBlock Text="Время" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="218,25,0,0" VerticalAlignment="Top" />
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Width="125" Height="20" Margin="265 25 0 0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <TextBox x:Name="aTime" BorderBrush="#FAEDCD" BorderThickness="2" FontSize="13" IsReadOnly ="True"  Text="Время"  Width="95" Foreground="#A77748" FontFamily="{StaticResource UniNeue-Regular}" HorizontalContentAlignment="Stretch"/>
+                                            <ComboBox x:Name="nHour" Width="15" HorizontalAlignment="Left"  Background="White" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" BorderThickness="0" ToolTip="часы" SelectionChanged="nHour_SelectionChanged" Initialized="nHour_Initialized">
+                                            </ComboBox>
+                                            <ComboBox x:Name="nMin"  Width="15" HorizontalAlignment="Left"  Background="White" FontFamily="{StaticResource UniNeue-Regular}" IsEditable="True" BorderThickness="0" ToolTip="Минуты" SelectionChanged="nMin_SelectionChanged" Initialized="nMin_Initialized">
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <TextBlock Text="Название" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="15,59,0,0" VerticalAlignment="Top" />
+                                    <TextBox x:Name="aName" Text="" BorderBrush="#FAEDCD" BorderThickness="2" FontSize="10" HorizontalAlignment="Left" Margin="90,59,0,226" Foreground="#A77748" Width="276" TextWrapping="Wrap" Background="white" FontFamily="{StaticResource UniNeue-Regular}"/>
+                                    <TextBlock Text="Тема" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" Foreground="#A77748" HorizontalAlignment="Left"  Margin="15,111,0,0" VerticalAlignment="Top" />
+                                    <TextBox x:Name="aTheme" Text="" FontSize="10" HorizontalAlignment="Left" Margin="90,111,0,169" Foreground="#A77748" Width="276" TextWrapping="Wrap" Background="white" BorderBrush="#FAEDCD" BorderThickness="2" FontFamily="{StaticResource UniNeue-Regular}"/>
+                                    <TextBlock Text="Описание:" FontFamily="{StaticResource GogoiaDeco}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="15,165,0,-65" Foreground="#A77748"/>
+                                    <TextBox x:Name="aDescript" Text="" FontSize="10" BorderBrush="#FAEDCD" BorderThickness="2" HorizontalAlignment="Left" Margin="90,165,0,21" Foreground="#A77748" Width="276" TextWrapping="Wrap" Background="white" FontFamily="{StaticResource UniNeue-Regular}"/>
+                                </Grid>
+                            </TabItem>
+                            <TabItem x:Name="guests">
+                                <TabItem.Header >
+                                    <Label FontFamily="{StaticResource GogoiaDeco}" FontSize="15" Foreground="#A77748">
+                                        Чайная программа
+                                    </Label>
+                                </TabItem.Header>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="20, 5, 20 ,5" HorizontalAlignment="Center">
+                                        <Button x:Name="bAdd" Width="140" Height="25"  HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="bAdd_Click" FontSize="25" FontFamily="{StaticResource GogoiaDeco}" Content="Добавить" Foreground="#A77748" Background="#FAEDCD" Style="{DynamicResource RoundedButtonStyle}"/>
+                                        <Button x:Name="bDell" Width="140" Height="25" Margin="15,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="bDell_Click" FontSize="25" FontFamily="{StaticResource GogoiaDeco}" Content="Удалить" Foreground="#A77748" Background="#FAEDCD" Style="{DynamicResource RoundedButtonStyle}"/>
+                                    </StackPanel>
+                                    <ComboBox x:Name="newTea" ItemsSource="{Binding value}" Text="{Binding name}" Width="200" Background="White" Foreground="#A77748" HorizontalContentAlignment="Stretch" FontSize="10" SelectedValue="{Binding endTea}" FontFamily="{StaticResource UniNeue-Regular}" Visibility="Collapsed" IsEditable="True" ToolTip="Чай"/>
+                                    <ScrollViewer Width="390" Height="285">
+                                        <StackPanel>
+                                            <ListBox x:Name="teaProgramm" BorderThickness="0" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding num}" Margin="10 0 0 0" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="12" Width="50" VerticalAlignment="Center"/>
+                                                            <TextBlock Text="{Binding value}" FontFamily="{StaticResource UniNeue-Regular}" Foreground="#A77748" FontSize="12" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Viewbox>
     </Grid>
 </Window>
