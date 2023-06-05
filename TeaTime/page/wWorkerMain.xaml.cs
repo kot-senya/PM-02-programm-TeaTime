@@ -43,23 +43,16 @@ namespace teaTime
         {
             List<Event> ev = DataBaseConnect.DataBase.Event.ToList();
             DateTime dateEvent;
-            if (aMonth.Text.Split(' ')[1] != "Сегодня")//инициализация даты
+            if (aData.Text.Split(' ')[0] != "Сегодня")//инициализация даты
             {
                 dateEvent = DateTime.Parse(aData.Text.Split(' ')[0]);
             }
             else
             {
-                dateEvent = DateTime.Now;
+                dateEvent = DateTime.Parse(Convert.ToString(DateTime.Now).Split(' ')[0]);
             }
             List<Event> events = ev.Where(tb => tb.date == dateEvent).ToList();//нужное мероприятие
-            NavigationService.Navigate(new wEventSee(new DataTimeEvent
-            {
-                Data = aData.Text.Split(' ')[0],
-                Time = aData.Text.Split(' ')[2],
-                Name = aName.Text,
-                Theme = aTheme.Text,
-                Description = aDescript.Text
-            }, worker, events[0]));
+            NavigationService.Navigate(new wEventSee(worker, events[0]));
         }
         private void bwrite_Click(object sender, RoutedEventArgs e)
         {
